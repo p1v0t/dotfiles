@@ -1,4 +1,5 @@
 
+# credit github.com/xvoland/Extract 
 function extract {
  if [ -z "$1" ]; then
     # display usage if no parameters given
