@@ -44,7 +44,7 @@ set autoread
 
 let mapleader = " "
 
-" compile and run
+" quick shot, compile and run
 au filetype cpp nnoremap <silent> <F5> :w <bar> !clear && clang++-8
 	\ -Wshadow
 	\ -Wnon-virtual-dtor
@@ -57,13 +57,13 @@ au filetype cpp nnoremap <silent> <F5> :w <bar> !clear && clang++-8
 	\ -Weffc++
 	\ -std=c++17 -O2 %  && ./a.out <CR>
 
+" just run
 au filetype cpp nnoremap <silent> <F6> :!./a.out <CR>
 
  augroup reload_vimrc
 	 autocmd!
 	 autocmd BufWritePost $MYVIMRC source $MYVIMRC
  augroup end
-
 
 " --------------------------------------------------------"
 " Mappings                                                "
@@ -120,14 +120,11 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'dracula/vim'
- 
 Plugin 'chriskempson/base16-vim'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-fugitive'
-
 Plugin 'fatih/vim-go'
- 
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'vhdirk/vim-cmake'
 Plugin 'pboettch/vim-cmake-syntax'

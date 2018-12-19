@@ -1,14 +1,12 @@
 
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 case $- in
     *i*) ;;
       *) return;;
 esac
 
-HISTCONTROL=ignoreboth
-
 shopt -s histappend
 
+HISTCONTROL=ignoreboth
 HISTSIZE=10000
 HISTFILESIZE=2000
 
@@ -111,12 +109,5 @@ export PATH=/opt/go/bin:$PATH
 
 export CXX=/usr/bin/clang++-8
 export CC=/usr/bin/clang-8
-
-# credit github.com/xvoland/Extract 
-SAVEIFS=$IFS
-IFS=$(echo -en "\n\b")
-
-
-IFS=$SAVEIFS
 
 stty -ixon
