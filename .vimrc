@@ -132,11 +132,13 @@ Plugin 'vim-scripts/Conque-GDB'
 Plugin 'w0rp/ale'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
+Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'honza/vim-snippets'
 Plugin 'garbas/vim-snipmate'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'python-mode/python-mode'
 Plugin 'rdnetto/YCM-Generator'
+Plugin 'vim-airline/vim-airline'
 
 call vundle#end()
 
@@ -200,6 +202,12 @@ augroup python_mode_settings
 	let g:pymode_motion=0
 	let g:pymode_python='python3'
 	let g:pymode_lint_unmodified=1
+augroup END
+
+augroup airline_settings
+	let g:airline#extensions#ycm#enabled=1
+	let g:airline#extensions#ycm#error_symbol='E:'
+	let g:airline#extensions#ycm#warning_symbol='W:'
 augroup END
 
 map <leader>ff :pyf /home/adem/Desktop/test/post/clang-include-fixer.py<cr>
