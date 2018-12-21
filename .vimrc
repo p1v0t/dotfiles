@@ -10,7 +10,6 @@ if !exists("g:syntax_on")
     syntax enable
 endif
 
-
 set number
 set showcmd
 set cmdheight=2
@@ -42,8 +41,23 @@ set fileformat=unix
 set autoread
 "set spell
 
+
 let mapleader = " "
 
+
+augroup reload_vimrc
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup end
+
+augroup DragQuickfixWindowDown
+    autocmd!
+    autocmd FileType qf wincmd J
+augroup END
+
+" --------------------------------------------------------"
+" Mappings                                                "
+" --------------------------------------------------------"
 " quick shot, compile and run
 au filetype cpp nnoremap <silent> <F5> :w <bar> !clear && clang++-8
 	\ -Wshadow
@@ -60,20 +74,18 @@ au filetype cpp nnoremap <silent> <F5> :w <bar> !clear && clang++-8
 " just run
 au filetype cpp nnoremap <silent> <F6> :!./a.out <CR>
 
- augroup reload_vimrc
-	 autocmd!
-	 autocmd BufWritePost $MYVIMRC source $MYVIMRC
- augroup end
+" CMake
+au filetype cpp nnoremap <silent> <leader>cm :CMake<CR>
+au filetype cpp nnoremap <silent> <leader>cc :CMakeClean<CR>
 
-" --------------------------------------------------------"
-" Mappings                                                "
-" --------------------------------------------------------"
-
-imap <Tab-j>  <CR-j>
-inoremap jk <ESC>
+" make
+set makeprg=make\ -C\ build
+au filetype cpp nnoremap <silent> <F4> :make! <CR>
 
 au filetype cpp nnoremap <silent> ft :!clear && clang-tidy-8 -checks='*' -fix -fix-errors % -- -std=c++1z <CR>
  
+inoremap jk <ESC>
+
 nnoremap <silent> <leader>ve :vsplit $MYVIMRC<CR>
 nnoremap <silent> <leader>vs :source $MYVIMRC<CR>
 
@@ -85,25 +97,22 @@ noremap <Down> <nop>
 noremap <Left> <nop>
 noremap <Right> <nop>
 
-noremap <C-j> <C-W>j
-noremap <C-k> <C-W>k
-noremap <C-h> <C-W>h
-noremap <C-l> <C-W>l
-
 inoremap <Up> <nop>
 inoremap <Down> <nop>
 inoremap <Left> <nop>
 inoremap <Right> <nop>
 
+noremap <C-j> <C-W>j
+noremap <C-k> <C-W>k
+noremap <C-h> <C-W>h
+noremap <C-l> <C-W>l
+
 nnoremap <S-Enter> O <Esc>
 
-"insert modda yukarı aşşağı
+"insert modda yukarı aşağı
 inoremap <C-Y> <C-X><C-Y>
 inoremap <C-E> <C-X><C-E>
 
-
-nnoremap <silent> <leader>cm :CMake<CR>
-nnoremap <silent> <leader>cc :CMakeClean<CR>
 
 " --------------------------------------------------------"
 " Paths                                                   "
@@ -152,7 +161,7 @@ augroup Vim-Cmake_Settings
 	let g:cmake_build_type="RelWithDebInfo"
 	let g:cmake_cxx_compiler="clang++-8"
 	let g:cmake_c_compiler="clang-8"
-	let g:cmake_project_generator="Unix Makefiles"
+	let g:cmake_project_generator="Ninja"
 	let g:cmake_export_compile_commands=1
 	let g:cmake_ycm_symlinks=1
 augroup END
