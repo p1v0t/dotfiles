@@ -133,8 +133,10 @@ Plugin 'w0rp/ale'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'garbas/vim-snipmate'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'python-mode/python-mode'
+Plugin 'rdnetto/YCM-Generator'
 
 call vundle#end()
 
@@ -148,10 +150,17 @@ augroup Vim-Cmake_Settings
 	let g:cmake_build_type="RelWithDebInfo"
 	let g:cmake_cxx_compiler="clang++-8"
 	let g:cmake_c_compiler="clang-8"
+	let g:cmake_project_generator="Unix Makefiles"
+	let g:cmake_export_compile_commands=1
+	let g:cmake_ycm_symlinks=1
 augroup END
 
 augroup nerdtree_settings
 	let g:NERDTreeWinPos='right'
+	let g:NERDTreeWinSize=27
+	let g:NERDTreeShowHidden=1
+	map <leader>nn :NERDTreeToggle<cr>
+
 augroup END
 
 augroup ale_Settings
@@ -175,6 +184,9 @@ augroup ale_Settings
 	let g:ale_cmake_cmakelint_executable='/usr/local/bin/cmakelint'
 	let g:ale_cmake_cmakelint_options='--filter=linelength package/consistency +readability/+logic whitespace/+eol' 
 
+augroup END
+
+augroup ycm_settings
 augroup END
 
 augroup ultisnip_settings
