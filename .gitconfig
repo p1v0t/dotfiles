@@ -1,0 +1,57 @@
+# this is a comment
+; this is also a comment
+
+[core]
+	editor = vim
+	filemod = false
+[user]
+	email = adembudak@outlook.com
+	name = Adem Budak
+
+[apply]
+	whitespace = fix
+
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+	ui = true
+
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+
+[diff]
+	tool = vimdiff
+
+[credential]
+	helper = cache
+	heper = cache --timeout=3600
+
+[alias]
+
+	# View abbreviated SHA, description, and history graph of the latest 20 commits
+	l = log --pretty=oneline -n 20 --graph --abbrev-commit
+
+	st = status
+	tags = tag -l
+	branches = branch -a
+	remotes =_ remote -v
+
+	c = clone --recursive 
+	uncommit = reset --soft HEAD^
+	delcommit = --amend
+
+	contributors = shortlog -e --summary --numbered
+
+	stat = log --stat
+	statoneline = log --pretty=oneline
+	statwhowhen = log --pretty=format:"%h - %an, %ar : %s"
+	statgraph = log --pretty=format:"%h %s" --graph
+	
+
+[credential]
+	helper = cache
+	heper = cache --timeout=3600
+
