@@ -11,6 +11,7 @@ if !exists("g:syntax_on")
 endif
 
 set number
+set ttyfast
 set showcmd
 set cmdheight=2
 set noswapfile
@@ -39,16 +40,15 @@ set mousehide
 set spelllang=en_US
 set fileformat=unix
 set autoread
+set comments=sl:/*,mb:\ *,elx:\ */
 "set spell
 
-
 let mapleader = " "
-
 
 augroup reload_vimrc
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
-augroup end
+augroup END
 
 augroup DragQuickfixWindowDown
     autocmd!
@@ -58,6 +58,7 @@ augroup END
 " --------------------------------------------------------"
 " Mappings                                                "
 " --------------------------------------------------------"
+
 " quick shot, compile and run
 au filetype cpp nnoremap <silent> <F5> :w <bar> !clear && clang++-8
 	\ -Wshadow
@@ -113,7 +114,6 @@ nnoremap <S-Enter> O <Esc>
 inoremap <C-Y> <C-X><C-Y>
 inoremap <C-E> <C-X><C-E>
 
-
 " --------------------------------------------------------"
 " Paths                                                   "
 " --------------------------------------------------------"
@@ -151,8 +151,10 @@ Plugin 'vim-airline/vim-airline'
 
 call vundle#end()
 
- 
-let g:clang_format#command='clang-format-8'
+augroup clang_format_settings
+        let g:clang_format#command='clang-format-8'
+        let g:clang_format#detect_style_file=1
+augroup END
 
 colorscheme dracula
 
@@ -170,12 +172,15 @@ augroup nerdtree_settings
 	let g:NERDTreeWinPos='right'
 	let g:NERDTreeWinSize=27
 	let g:NERDTreeShowHidden=1
-	map <leader>nn :NERDTreeToggle<cr>
+	noremap <leader>nn :NERDTreeToggle<cr>
 
 augroup END
 
 augroup ale_Settings
 	let g:ale_lint_on_text_changed=1
+
+	let ale_c_build_dir_names=['build','Build','bin']
+	let ale_c_build_dir='build'
 
 	let g:ale_cpp_clang_executable='clang-8'
 	let g:ale_cpp_clang_options='-Wall -Wshadow -Wnon-virtual-dtor
@@ -190,20 +195,34 @@ augroup ale_Settings
 
 	let g:ale_c_clangformat_executable='clang-format-8'
 	let g:ale_c_clangformat_options='.clang-format'
+
 	let g:ale_c_clangtidy_executable='clang-tidy-8'
-        let g:ale_c_clangtidy_checks=[ -'modernize-use-equals-delete']
+        let g:ale_c_clangtidy_checks=['modernize-use-equals-delete']
+
+	let g:ale_cpp_clangtidy_executable='clang-tidy-8'
+	let g:ale_cpp_clangtidy_checks=['bugpron-*','cert-*','cppcoreguidelines-*','google-*', 'hicpp-*', 'llvm-*','misc-*','modernize-*', 'performance-*', 'readability-*']
+
 	let g:ale_cmake_cmakelint_executable='/usr/local/bin/cmakelint'
 	let g:ale_cmake_cmakelint_options='--filter=linelength package/consistency +readability/+logic whitespace/+eol' 
-
 augroup END
 
 augroup ycm_settings
 augroup END
 
 augroup ultisnip_settings
+	let g:UltiSnipsUsePythonVersion=2
+	let g:UltiSnipsEditSplit='vertical'
+	let g:UltiSnipsEnableSnipMate=1
+
 	let g:UltiSnipsExpandTrigger="<c-j>"
 	let g:UltiSnipsJumpForwardTrigger="<c-b>"
 	let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+augroup END
+
+augroup airline_settings
+	let g:airline#extensions#ycm#enabled=1
+	let g:airline#extensions#ycm#error_symbol='E:'
+	let g:airline#extensions#ycm#warning_symbol='W:'
 augroup END
 
 augroup python_mode_settings
@@ -211,12 +230,6 @@ augroup python_mode_settings
 	let g:pymode_motion=0
 	let g:pymode_python='python3'
 	let g:pymode_lint_unmodified=1
-augroup END
-
-augroup airline_settings
-	let g:airline#extensions#ycm#enabled=1
-	let g:airline#extensions#ycm#error_symbol='E:'
-	let g:airline#extensions#ycm#warning_symbol='W:'
 augroup END
 
 map <leader>ff :pyf /home/adem/Desktop/test/post/clang-include-fixer.py<cr>
