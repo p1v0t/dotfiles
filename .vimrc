@@ -80,7 +80,7 @@ au filetype cpp nnoremap <silent> <leader>cm :CMake<CR>
 au filetype cpp nnoremap <silent> <leader>cc :CMakeClean<CR>
 
 " make
-set makeprg=make\ -C\ build
+set makeprg=ninja\ -C\ build
 au filetype cpp nnoremap <silent> <F4> :make! <CR>
 
 au filetype cpp nnoremap <silent> ft :!clear && clang-tidy-8 -checks='*' -fix -fix-errors % -- -std=c++1z <CR>
@@ -197,16 +197,25 @@ augroup ale_Settings
 	let g:ale_c_clangformat_options='.clang-format'
 
 	let g:ale_c_clangtidy_executable='clang-tidy-8'
-        let g:ale_c_clangtidy_checks=['modernize-use-equals-delete']
+        let g:ale_c_clangtidy_checks=['*']
 
 	let g:ale_cpp_clangtidy_executable='clang-tidy-8'
-	let g:ale_cpp_clangtidy_checks=['bugpron-*','cert-*','cppcoreguidelines-*','google-*', 'hicpp-*', 'llvm-*','misc-*','modernize-*', 'performance-*', 'readability-*']
+	" hint:
+       	" to check 'something-*` 
+	" to disable check '-something*'
+	let g:ale_cpp_clangtidy_checks=['bugpron-*','cert-*','cppcoreguidelines-*','google-*', 'hicpp-*',	
+             \ 'llvm-*','misc-*','modernize-*', 'performance-*', 'readability-*']
 
 	let g:ale_cmake_cmakelint_executable='/usr/local/bin/cmakelint'
 	let g:ale_cmake_cmakelint_options='--filter=linelength package/consistency +readability/+logic whitespace/+eol' 
+
+	let g:ale_cpp_clangcheck_executable='cppcheck'
 augroup END
 
 augroup ycm_settings
+        let g:ycm_confirm_extra_conf=0
+	let g:ycm_error_symbol='oO'
+	let g:ycm_warning_symbol=':('
 augroup END
 
 augroup ultisnip_settings
