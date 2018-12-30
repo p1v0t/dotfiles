@@ -80,18 +80,19 @@ au filetype cpp nnoremap <silent> <leader>cm :CMake<CR>
 au filetype cpp nnoremap <silent> <leader>cc :CMakeClean<CR>
 
 " make
-set makeprg=ninja\ -C\ build
+set makeprg=ninja\ -C\ ./build
 au filetype cpp nnoremap <silent> <F4> :make! <CR>
 
-au filetype cpp nnoremap <silent> ft :!clear && clang-tidy-8 -checks='*' -fix -fix-errors % -- -std=c++1z <CR>
+au filetype cpp nnoremap <silent> ft :!clear && clang-tidy-8 -checks='*'
+			\-fix -fix-errors % -- -std=c++1z <CR>
  
 inoremap jk <ESC>
+nnoremap - :
 
 nnoremap <silent> <leader>ve :vsplit $MYVIMRC<CR>
-nnoremap <silent> <leader>vs :source $MYVIMRC<CR>
+nnoremap <silent> <leader>vs :w <bar> source $MYVIMRC<CR>
 
 nnoremap <silent> <leader>be :vsplit ~/.bashrc<CR>
-nnoremap <silent> <leader>et :vsplit ~/.tmux.conf<CR>
 
 noremap <Up> <nop>
 noremap <Down> <nop>
@@ -203,8 +204,10 @@ augroup ale_Settings
 	" hint:
        	" to check 'something-*` 
 	" to disable check '-something*'
-	let g:ale_cpp_clangtidy_checks=['bugpron-*','cert-*','cppcoreguidelines-*','google-*', 'hicpp-*',	
-             \ 'llvm-*','misc-*','modernize-*', 'performance-*', 'readability-*']
+	let g:ale_cpp_clangtidy_checks=['bugpron-*','cert-*',
+	    \'cppcoreguidelines-*','google-*', 'hicpp-*',	
+            \ 'llvm-*','misc-*','modernize-*', 'performance-*',
+	    \'readability-*', '-llvm-include-order*']
 
 	let g:ale_cmake_cmakelint_executable='/usr/local/bin/cmakelint'
 	let g:ale_cmake_cmakelint_options='--filter=linelength package/consistency +readability/+logic whitespace/+eol' 
@@ -232,6 +235,7 @@ augroup airline_settings
 	let g:airline#extensions#ycm#enabled=1
 	let g:airline#extensions#ycm#error_symbol='E:'
 	let g:airline#extensions#ycm#warning_symbol='W:'
+  	"let g:airline_exclude_filetypes = []
 augroup END
 
 augroup python_mode_settings
@@ -241,12 +245,12 @@ augroup python_mode_settings
 	let g:pymode_lint_unmodified=1
 augroup END
 
-map <leader>ff :pyf /home/adem/Desktop/test/post/clang-include-fixer.py<cr>
 
-let g:clang_include_fixer_path="usr/bin/clang-include-fixer-8"
+let g:clang_include_fixer_path="clang-include-fixer-8"
 let g:clang_include_fixer_maximum_suggested_headers=3
 let g:clang_include_fixer_increment_num=5
 let g:clang_include_fixer_jump_to_include=0
+
 
 au BufWinLeave ?* mkview 1
 au BufWinLeave ?* silent loadview 1
