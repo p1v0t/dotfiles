@@ -106,8 +106,9 @@ export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 
 export PATH=/opt/cmake/bin:$PATH
 export PATH=/opt/go/bin:$PATH
+export PATH=/home/adem/.local/bin:$PATH
 
-export CXX=/usr/bin/clang++-8
-export CC=/usr/bin/clang-8
+export CC=/usr/local/bin/clang
+export CXX=/usr/local/bin/clang++
 
 stty -ixon
