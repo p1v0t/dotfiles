@@ -1,114 +1,244 @@
+set nocompatible
+set background=dark
+set t_Co=256
 
-case $- in
-    *i*) ;;
-      *) return;;
-esac
+filetype off
+filetype plugin indent on
+syntax on
 
-shopt -s histappend
+if !exists("g:syntax_on")
+    syntax enable
+endif
 
-HISTCONTROL=ignoreboth
-HISTSIZE=10000
-HISTFILESIZE=2000
+set number
+set ttyfast
+set showcmd
+set cmdheight=2
+set noswapfile
+set nobackup
+set noerrorbells
+set autowrite
+set ignorecase
+set ruler 
+set cursorline
+set colorcolumn=110
+set title
+set showmatch
+set showmode
+set mouse=v
+set modifiable
+set splitright
+set splitbelow
+set shortmess=atI
+set wildmenu
+set encoding=utf-8 nobomb
+set binary
+set noeol
+set autoread
+set backspace=indent,eol,start
+set mousehide
+set spelllang=en_US
+set fileformat=unix
+set autoread
+set comments=sl:/*,mb:\ *,elx:\ */
+"set spell
 
-shopt -s checkwinsize
+let mapleader = " "
 
-shopt -s globstar
+augroup reload_vimrc
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END
 
-# make less more friendly for non-text input files, see lesspipe(1)
-#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+augroup DragQuickfixWindowDown
+    autocmd!
+    autocmd FileType qf wincmd J
+augroup END
 
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
+" --------------------------------------------------------"
+" Mappings                                                "
+" --------------------------------------------------------"
 
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
+" quick shot, compile and run
+au filetype cpp nnoremap <silent> <F5> :w <bar> !clear && clang++
+	\ -Wshadow
+	\ -Wnon-virtual-dtor
+	\ -Wpedantic 
+	\ -Woverloaded-virtual 
+	\ -Wdeprecated
+	\ -Wconversion 
+        \ -Wold-style-cast
+	\ -Wnon-virtual-dtor
+	\ -Weffc++
+	\ -std=c++17 -O2 %  && ./a.out <CR>
 
-force_color_prompt=yes
+" just run
+au filetype cpp nnoremap <silent> <F6> :!./a.out <CR>
 
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
+" CMake
+au filetype cpp nnoremap <silent> <leader>cm :CMake<CR>
+au filetype cpp nnoremap <silent> <leader>cc :CMakeClean<CR>
 
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
+" make
+set makeprg=ninja\ -C\ ./build
+au filetype cpp nnoremap <silent> <F4> :make! <CR>
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
+au filetype cpp nnoremap <silent> ft :!clear && clang-tidy -checks='*'
+			\-fix -fix-errors % -- -std=c++1z <CR>
+ 
+inoremap jk <ESC>
+nnoremap - :
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias dir='dir --color=auto'
-    alias vdir='vdir --color=auto'
+nnoremap <silent> <leader>ve :vsplit $MYVIMRC<CR>
+nnoremap <silent> <leader>vs :w <bar> source $MYVIMRC<CR>
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
+nnoremap <silent> <leader>be :vsplit ~/.bashrc<CR>
 
-# colored GCC warnings and errors
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+noremap <Up> <nop>
+noremap <Down> <nop>
+noremap <Left> <nop>
+noremap <Right> <nop>
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+inoremap <Up> <nop>
+inoremap <Down> <nop>
+inoremap <Left> <nop>
+inoremap <Right> <nop>
 
-if [ -f ~/.bash_functions ]; then
-    . ~/.bash_functions
-fi
+noremap <C-j> <C-W>j
+noremap <C-k> <C-W>k
+noremap <C-h> <C-W>h
+noremap <C-l> <C-W>l
 
-if [ ! -a ~/.inputrc ]; then 
-     echo '$include /etc/inputrc' > ~/.inputrc; 
-fi
-echo 'set completion-ignore-case On' >> ~/.inputrc
+nnoremap <S-Enter> O <Esc>
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
+"insert modda yukarı aşağı
+inoremap <C-Y> <C-X><C-Y>
+inoremap <C-E> <C-X><C-E>
+
+" --------------------------------------------------------"
+" Paths                                                   "
+" --------------------------------------------------------"
+
+set rtp+=~/.vim/bundle/Vundle.vim
+
+" --------------------------------------------------------"
+" Plugins                                                 "
+" --------------------------------------------------------"
+
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'dracula/vim'
+Plugin 'chriskempson/base16-vim'
+Plugin 'tpope/vim-surround'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'tpope/vim-fugitive'
+Plugin 'fatih/vim-go'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'vhdirk/vim-cmake'
+Plugin 'pboettch/vim-cmake-syntax'
+Plugin 'w0rp/ale'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'honza/vim-snippets'
+Plugin 'garbas/vim-snipmate'
+Plugin 'rhysd/vim-clang-format'
+Plugin 'rdnetto/YCM-Generator'
+Plugin 'vim-airline/vim-airline'
+
+call vundle#end()
+
+augroup clang_format_settings
+        let g:clang_format#command='clang-format'
+        let g:clang_format#detect_style_file=1
+augroup END
+
+colorscheme dracula
+
+augroup Vim-Cmake_Settings
+	"g:cmake_install_prefix
+	let g:cmake_build_type="RelWithDebInfo"
+	let g:cmake_cxx_compiler="clang++"
+	let g:cmake_c_compiler="clang"
+	let g:cmake_project_generator="Ninja"
+	let g:cmake_export_compile_commands=1
+	let g:cmake_ycm_symlinks=1
+augroup END
+
+augroup nerdtree_settings
+	let g:NERDTreeWinPos='right'
+	let g:NERDTreeWinSize=20
+	let g:NERDTreeShowHidden=1
+	noremap <leader>nn :NERDTreeToggle<cr>
+augroup END
+
+augroup ale_Settings
+	let g:ale_lint_on_text_changed=1
+
+	let ale_c_build_dir_names=['build','Build','bin']
+	let ale_c_build_dir='build'
+
+	let g:ale_cpp_clang_executable='clang'
+	let g:ale_cpp_clang_options='-Wall -Wshadow -Wnon-virtual-dtor
+            \ -Wpedantic -Woverloaded-virtual -Wdeprecated -Wconversion 
+            \-Wold-style-cast -Wnon-virtual-dtor -Weffc++ -std=c++17'
+
+	let g:ale_cpp_clangd_executable='clangd'
+	let g:ale_cpp_clangd_option=''
+
+	let g:ale_cpp_clangcheck_executable='clang-check'
+	let g:ale_cpp_clangcheck_options=''
+
+	let g:ale_c_clangformat_executable='clang-format'
+	let g:ale_c_clangformat_options='.clang-format'
+
+	let g:ale_c_clangtidy_executable='clang-tidy'
+        let g:ale_c_clangtidy_checks=['*']
+
+	let g:ale_cpp_clangtidy_executable='clang-tidy'
+	" hint:
+       	" to check 'something-*` 
+	" to disable check '-something*'
+	let g:ale_cpp_clangtidy_checks=['bugpron-*','cert-*',
+	    \'cppcoreguidelines-*','google-*', 'hicpp-*',	
+            \ 'llvm-*','misc-*','modernize-*', 'performance-*',
+	    \'readability-*', '-llvm-include-order*']
+
+	let g:ale_cmake_cmakelint_executable='/usr/local/bin/cmakelint'
+	let g:ale_cmake_cmakelint_options='--filter=linelength package/consistency +readability/+logic whitespace/+eol' 
+
+	let g:ale_cpp_clangcheck_executable='cppcheck'
+augroup END
+
+augroup ycm_settings
+        let g:ycm_confirm_extra_conf=0
+	let g:ycm_error_symbol='oO'
+	let g:ycm_warning_symbol=':('
+augroup END
+
+augroup ultisnip_settings
+	let g:UltiSnipsEditSplit='vertical'
+	let g:UltiSnipsEnableSnipMate=1
+
+	let g:UltiSnipsExpandTrigger="<c-j>"
+	let g:UltiSnipsJumpForwardTrigger="<c-b>"
+	let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+augroup END
+
+augroup airline_settings
+	let g:airline#extensions#ycm#enabled=1
+	let g:airline#extensions#ycm#error_symbol='E:'
+	let g:airline#extensions#ycm#warning_symbol='W:'
+  	"let g:airline_exclude_filetypes = []
+augroup END
+
+let g:clang_include_fixer_path="clang-include-fixer"
+let g:clang_include_fixer_maximum_suggested_headers=3
+let g:clang_include_fixer_increment_num=5
+let g:clang_include_fixer_jump_to_include=0
 
 
-if [ -n "$DISPLAY" ]; then
-	xset b off
-fi
-
-export LESS_TERMCAP_mb=$'\E[1;31m'     # begin bold
-export LESS_TERMCAP_md=$'\E[1;36m'     # begin blink
-export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
-export LESS_TERMCAP_so=$'\E[01;44;33m' # begin reverse video
-export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
-export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
-export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
-export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
-
-export PATH=/opt/cmake/bin:$PATH
-export PATH=/opt/go/bin:$PATH
-export PATH=/home/adem/.local/bin:$PATH
-
-export CC=/usr/local/bin/clang
-export CXX=/usr/local/bin/clang++
-
-stty -ixon
+au BufWinLeave ?* mkview 1
+au BufWinLeave ?* silent loadview 1
