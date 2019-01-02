@@ -2,10 +2,6 @@ set nocompatible
 set background=dark
 set t_Co=256
 
-filetype off
-filetype plugin indent on
-syntax on
-
 if !exists("g:syntax_on")
     syntax enable
 endif
@@ -111,44 +107,31 @@ noremap <C-l> <C-W>l
 
 nnoremap <S-Enter> O <Esc>
 
-"insert modda yukarı aşağı
-inoremap <C-Y> <C-X><C-Y>
-inoremap <C-E> <C-X><C-E>
+call plug#begin('~/.vim/plugged')
 
-" --------------------------------------------------------"
-" Paths                                                   "
-" --------------------------------------------------------"
+Plug 'scrooloose/nerdtree'
+Plug 'dracula/vim'
+Plug 'chriskempson/base16-vim'
+Plug 'tpope/vim-surround'
+Plug 'vim-syntastic/syntastic'
+Plug 'tpope/vim-fugitive'
+Plug 'fatih/vim-go'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'vhdirk/vim-cmake'
+Plug 'pboettch/vim-cmake-syntax'
+Plug 'w0rp/ale'
+Plug 'Valloric/YouCompleteMe'
+Plug 'SirVer/ultisnips'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'honza/vim-snippets'
+Plug 'garbas/vim-snipmate'
+Plug 'rhysd/vim-clang-format'
+Plug 'rdnetto/YCM-Generator'
+Plug 'vim-airline/vim-airline'
 
-set rtp+=~/.vim/bundle/Vundle.vim
+call plug#end()
 
-" --------------------------------------------------------"
-" Plugins                                                 "
-" --------------------------------------------------------"
-
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'dracula/vim'
-Plugin 'chriskempson/base16-vim'
-Plugin 'tpope/vim-surround'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'tpope/vim-fugitive'
-Plugin 'fatih/vim-go'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'vhdirk/vim-cmake'
-Plugin 'pboettch/vim-cmake-syntax'
-Plugin 'w0rp/ale'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'SirVer/ultisnips'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'honza/vim-snippets'
-Plugin 'garbas/vim-snipmate'
-Plugin 'rhysd/vim-clang-format'
-Plugin 'rdnetto/YCM-Generator'
-Plugin 'vim-airline/vim-airline'
-
-call vundle#end()
+colorscheme dracula
 
 augroup clang_format_settings
         let g:clang_format#command='clang-format'
@@ -182,7 +165,7 @@ augroup ale_Settings
 
 	let g:ale_cpp_clang_executable='clang'
 	let g:ale_cpp_clang_options='-Wall -Wshadow -Wnon-virtual-dtor
-            \ -Wpedantic -Woverloaded-virtual -Wdeprecated -Wconversion 
+            \ -Wpedantic -Woverloaded-virtual -Wdeprecated -Wconversion
             \-Wold-style-cast -Wnon-virtual-dtor -Weffc++ -std=c++17'
 
 	let g:ale_cpp_clangd_executable='clangd'
@@ -199,15 +182,15 @@ augroup ale_Settings
 
 	let g:ale_cpp_clangtidy_executable='clang-tidy'
 	" hint:
-       	" to check 'something-*` 
+       	" to check 'something-*`
 	" to disable check '-something*'
 	let g:ale_cpp_clangtidy_checks=['bugpron-*','cert-*',
-	    \'cppcoreguidelines-*','google-*', 'hicpp-*',	
+	    \'cppcoreguidelines-*','google-*', 'hicpp-*',
             \ 'llvm-*','misc-*','modernize-*', 'performance-*',
 	    \'readability-*', '-llvm-include-order*']
 
 	let g:ale_cmake_cmakelint_executable='/usr/local/bin/cmakelint'
-	let g:ale_cmake_cmakelint_options='--filter=linelength package/consistency +readability/+logic whitespace/+eol' 
+	let g:ale_cmake_cmakelint_options='--filter=linelength package/consistency +readability/+logic whitespace/+eol'
 
 	let g:ale_cpp_clangcheck_executable='cppcheck'
 augroup END
@@ -231,6 +214,7 @@ augroup airline_settings
 	let g:airline#extensions#ycm#enabled=1
 	let g:airline#extensions#ycm#error_symbol='E:'
 	let g:airline#extensions#ycm#warning_symbol='W:'
+        let g:airline_theme='dracula'
   	"let g:airline_exclude_filetypes = []
 augroup END
 
@@ -239,6 +223,6 @@ let g:clang_include_fixer_maximum_suggested_headers=3
 let g:clang_include_fixer_increment_num=5
 let g:clang_include_fixer_jump_to_include=0
 
-
 au BufWinLeave ?* mkview 1
 au BufWinLeave ?* silent loadview 1
+
