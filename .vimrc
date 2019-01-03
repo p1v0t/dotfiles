@@ -52,31 +52,7 @@ augroup DragQuickfixWindowDown
     autocmd FileType qf wincmd J
 augroup END
 
-" quick shot, compile and run
-au filetype cpp nnoremap <silent> <F5> :w <bar> !clear && clang++
-	\ -Wshadow
-	\ -Wnon-virtual-dtor
-	\ -Wpedantic 
-	\ -Woverloaded-virtual 
-	\ -Wdeprecated
-	\ -Wconversion 
-        \ -Wold-style-cast
-	\ -Wnon-virtual-dtor
-	\ -Weffc++
-	\ -std=c++17 -O2 %  && ./a.out <CR>
-
-au filetype cpp nnoremap <silent> <F6> :!./a.out <CR>
-
-au filetype cpp nnoremap <silent> <leader>cm :CMake<CR>
-au filetype cpp nnoremap <silent> <leader>cc :CMakeClean<CR>
-
-set makeprg=ninja\ -C\ ./build
-au filetype cpp nnoremap <silent> <F4> :make! <CR>
-
-au filetype cpp nnoremap <silent> ft :!clear && clang-tidy -checks='*'
-			\-fix -fix-errors % -- -std=c++1z <CR>
- 
-inoremap jk <ESC>
+noremap jk <ESC>
 nnoremap - :
 
 nnoremap <silent> <leader>ve :vsplit $MYVIMRC<CR>
