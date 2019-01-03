@@ -1,7 +1,3 @@
-set nocompatible
-set background=dark
-set t_Co=256
-
 if !exists("g:syntax_on")
     syntax enable
 endif
@@ -10,7 +6,8 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-
+set nocompatible
+set background=dark
 set number
 set ttyfast
 set showcmd
@@ -112,7 +109,6 @@ Plug 'chriskempson/base16-vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
-Plug 'vim-syntastic/syntastic'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'vhdirk/vim-cmake'
 Plug 'pboettch/vim-cmake-syntax'
@@ -121,7 +117,6 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'SirVer/ultisnips'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'honza/vim-snippets'
-Plug 'garbas/vim-snipmate'
 Plug 'rhysd/vim-clang-format'
 Plug 'rdnetto/YCM-Generator'
 Plug 'vim-airline/vim-airline'
@@ -130,90 +125,76 @@ call plug#end()
 
 colorscheme dracula
 
-augroup clang_format_settings
         let g:clang_format#command='clang-format'
         let g:clang_format#detect_style_file=1
-augroup END
 
 colorscheme dracula
 
-augroup Vim-Cmake_Settings
-	"g:cmake_install_prefix
-	let g:cmake_build_type="RelWithDebInfo"
-	let g:cmake_cxx_compiler="clang++"
-	let g:cmake_c_compiler="clang"
-	let g:cmake_project_generator="Ninja"
-	let g:cmake_export_compile_commands=1
-	let g:cmake_ycm_symlinks=1
-augroup END
+"let g:cmake_install_prefix
+let g:cmake_build_type="RelWithDebInfo"
+let g:cmake_cxx_compiler="clang++"
+let g:cmake_c_compiler="clang"
+let g:cmake_project_generator="Ninja"
+let g:cmake_export_compile_commands=1
+let g:cmake_ycm_symlinks=1
 
-augroup nerdtree_settings
-	let g:NERDTreeWinPos='right'
-	let g:NERDTreeWinSize=20
-	let g:NERDTreeShowHidden=1
-	noremap <leader>nn :NERDTreeToggle<cr>
-augroup END
+let g:NERDTreeWinPos='right'
+let g:NERDTreeWinSize=20
+let g:NERDTreeShowHidden=1
+noremap <leader>nn :NERDTreeToggle<cr>
 
-augroup ale_Settings
-	let g:ale_lint_on_text_changed=1
+let g:ale_lint_on_text_changed=1
 
-	let ale_c_build_dir_names=['build','Build','bin']
-	let ale_c_build_dir='build'
+let ale_c_build_dir_names=['build','Build','bin']
+let ale_c_build_dir='build'
 
-	let g:ale_cpp_clang_executable='clang'
-	let g:ale_cpp_clang_options='-Wall -Wshadow -Wnon-virtual-dtor
-            \ -Wpedantic -Woverloaded-virtual -Wdeprecated -Wconversion
-            \-Wold-style-cast -Wnon-virtual-dtor -Weffc++ -std=c++17'
+let g:ale_cpp_clang_executable='clang'
+let g:ale_cpp_clang_options='-Wall -Wshadow -Wnon-virtual-dtor
+    \ -Wpedantic -Woverloaded-virtual -Wdeprecated -Wconversion
+    \-Wold-style-cast -Wnon-virtual-dtor -Weffc++ -std=c++17'
 
-	let g:ale_cpp_clangd_executable='clangd'
-	let g:ale_cpp_clangd_option=''
+let g:ale_cpp_clangd_executable='clangd'
+let g:ale_cpp_clangd_option=''
 
-	let g:ale_cpp_clangcheck_executable='clang-check'
-	let g:ale_cpp_clangcheck_options=''
+let g:ale_cpp_clangcheck_executable='clang-check'
+let g:ale_cpp_clangcheck_options=''
 
-	let g:ale_c_clangformat_executable='clang-format'
-	let g:ale_c_clangformat_options='.clang-format'
+let g:ale_c_clangformat_executable='clang-format'
+let g:ale_c_clangformat_options='.clang-format'
 
-	let g:ale_c_clangtidy_executable='clang-tidy'
-        let g:ale_c_clangtidy_checks=['*']
+let g:ale_c_clangtidy_executable='clang-tidy'
+let g:ale_c_clangtidy_checks=['*']
 
-	let g:ale_cpp_clangtidy_executable='clang-tidy'
-	" hint:
-       	" to check 'something-*`
-	" to disable check '-something*'
-	let g:ale_cpp_clangtidy_checks=['bugpron-*','cert-*',
-	    \'cppcoreguidelines-*','google-*', 'hicpp-*',
-            \ 'llvm-*','misc-*','modernize-*', 'performance-*',
-	    \'readability-*', '-llvm-include-order*']
+let g:ale_cpp_clangtidy_executable='clang-tidy'
+" hint:
+" to check 'something-*`
+" to disable check '-something*'
+let g:ale_cpp_clangtidy_checks=['bugpron-*','cert-*',
+    \'cppcoreguidelines-*','google-*', 'hicpp-*',
+    \ 'llvm-*','misc-*','modernize-*', 'performance-*',
+    \'readability-*', '-llvm-include-order*']
 
-	let g:ale_cmake_cmakelint_executable='/usr/local/bin/cmakelint'
-	let g:ale_cmake_cmakelint_options='--filter=linelength package/consistency +readability/+logic whitespace/+eol'
+let g:ale_cmake_cmakelint_executable='/usr/local/bin/cmakelint'
+let g:ale_cmake_cmakelint_options='--filter=linelength package/consistency +readability/+logic whitespace/+eol'
 
-	let g:ale_cpp_clangcheck_executable='cppcheck'
-augroup END
+let g:ale_cpp_clangcheck_executable='cppcheck'
 
-augroup ycm_settings
-        let g:ycm_confirm_extra_conf=0
-	let g:ycm_error_symbol='oO'
-	let g:ycm_warning_symbol=':('
-augroup END
+let g:ycm_confirm_extra_conf=0
+let g:ycm_error_symbol='oO'
+let g:ycm_warning_symbol=':('
 
-augroup ultisnip_settings
-	let g:UltiSnipsEditSplit='vertical'
-	let g:UltiSnipsEnableSnipMate=1
+let g:UltiSnipsEditSplit='vertical'
+let g:UltiSnipsEnableSnipMate=1
 
-	let g:UltiSnipsExpandTrigger="<c-j>"
-	let g:UltiSnipsJumpForwardTrigger="<c-b>"
-	let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-augroup END
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-augroup airline_settings
-	let g:airline#extensions#ycm#enabled=1
-	let g:airline#extensions#ycm#error_symbol='E:'
-	let g:airline#extensions#ycm#warning_symbol='W:'
-        let g:airline_theme='dracula'
-  	"let g:airline_exclude_filetypes = []
-augroup END
+let g:airline#extensions#ycm#enabled=1
+let g:airline#extensions#ycm#error_symbol='E:'
+let g:airline#extensions#ycm#warning_symbol='W:'
+let g:airline_theme='dracula'
+"let g:airline_exclude_filetypes = []
 
 let g:clang_include_fixer_path="clang-include-fixer"
 let g:clang_include_fixer_maximum_suggested_headers=3
