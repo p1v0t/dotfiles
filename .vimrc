@@ -37,7 +37,6 @@ set spelllang=en_US
 set fileformat=unix
 set autoread
 set comments=sl:/*,mb:\ *,elx:\ */
-"set spell
 
 let mapleader = " "
 
@@ -50,10 +49,6 @@ augroup DragQuickfixWindowDown
     autocmd!
     autocmd FileType qf wincmd J
 augroup END
-
-" --------------------------------------------------------"
-" Mappings                                                "
-" --------------------------------------------------------"
 
 " quick shot, compile and run
 au filetype cpp nnoremap <silent> <F5> :w <bar> !clear && clang++
@@ -68,14 +63,11 @@ au filetype cpp nnoremap <silent> <F5> :w <bar> !clear && clang++
 	\ -Weffc++
 	\ -std=c++17 -O2 %  && ./a.out <CR>
 
-" just run
 au filetype cpp nnoremap <silent> <F6> :!./a.out <CR>
 
-" CMake
 au filetype cpp nnoremap <silent> <leader>cm :CMake<CR>
 au filetype cpp nnoremap <silent> <leader>cc :CMakeClean<CR>
 
-" make
 set makeprg=ninja\ -C\ ./build
 au filetype cpp nnoremap <silent> <F4> :make! <CR>
 
@@ -113,9 +105,9 @@ Plug 'scrooloose/nerdtree'
 Plug 'dracula/vim'
 Plug 'chriskempson/base16-vim'
 Plug 'tpope/vim-surround'
-Plug 'vim-syntastic/syntastic'
 Plug 'tpope/vim-fugitive'
-Plug 'fatih/vim-go'
+Plug 'tpope/vim-eunuch'
+Plug 'vim-syntastic/syntastic'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'vhdirk/vim-cmake'
 Plug 'pboettch/vim-cmake-syntax'
@@ -225,4 +217,3 @@ let g:clang_include_fixer_jump_to_include=0
 
 au BufWinLeave ?* mkview 1
 au BufWinLeave ?* silent loadview 1
-
