@@ -6,6 +6,11 @@ if !exists("g:syntax_on")
     syntax enable
 endif
 
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+
 set number
 set ttyfast
 set showcmd
@@ -46,7 +51,7 @@ augroup reload_vimrc
 augroup END
 
 augroup DragQuickfixWindowDown
-    autocmd!
+	autocmd!
     autocmd FileType qf wincmd J
 augroup END
 
