@@ -12,7 +12,7 @@ set number
 set ttyfast
 set showcmd
 set cmdheight=2
-set noswapfile
+set swapfile
 set nobackup
 set noerrorbells
 set autowrite
