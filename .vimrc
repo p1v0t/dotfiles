@@ -56,6 +56,7 @@ Plug 'honza/vim-snippets'
 Plug 'rhysd/vim-clang-format'
 Plug 'rdnetto/YCM-Generator'
 Plug 'vim-airline/vim-airline'
+Plug 'richq/vim-cmake-completion'
 
 call plug#end()
 
@@ -84,8 +85,8 @@ let g:NERDTreeShowHidden=1
 " ale {{{
 let g:ale_lint_on_text_changed=1
 
-let ale_c_build_dir_names=['build','Build','bin']
-let ale_c_build_dir='build'
+let ale_c_build_dir_names=['build','Build','bin', '../build', '../Build']
+let ale_c_build_dir='../build'
 
 let g:ale_cpp_clang_executable='clang'
 let g:ale_cpp_clang_options='-Wall -Wshadow -Wnon-virtual-dtor
