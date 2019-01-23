@@ -6,7 +6,14 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
+if empty(v:servername) && exists('*remote_startserver')
+  call remote_startserver('VIM')
+endif
+
+filetype plugin indent on
+
 let mapleader = " "
+let maplocalleader = ","
 
 augroup reload_vimrc
     autocmd!
@@ -57,10 +64,48 @@ Plug 'rhysd/vim-clang-format'
 Plug 'rdnetto/YCM-Generator'
 Plug 'vim-airline/vim-airline'
 Plug 'richq/vim-cmake-completion'
+Plug 'lervag/vimtex'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'mileszs/ack.vim'
+
 
 call plug#end()
 
 " pluginsVariables {{{
+" vimtex {{{
+let g:tex_flavor = 'XeTeX'
+
+if !exists('g:ycm_semantic_triggers')
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
+
+" }}}
+" rainbow_brakets {{{
+let g:rbpt_max=16
+let g:rbpt_loadcmd_toggle=1
+
+let g:rbpt_colorpairs=[
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+" }}}
+
 " vim-clang-format {{{
 let g:clang_format#command='clang-format'
 let g:clang_format#detect_style_file=1
@@ -141,6 +186,14 @@ let g:airline#extensions#ycm#error_symbol='E:'
 let g:airline#extensions#ycm#warning_symbol='W:'
 let g:airline_theme='dracula'
 "let g:airline_exclude_filetypes = []
+
+" vim-latex-live-preview {{{
+let g:livepreview_engine='evince'
+let g:livepreview_cursorhold_recompile=1
+" }}}
+
+let g:ackprg = 'ag --vimgrep'
+
 " }}}
 " }}}
 " }}}
@@ -154,7 +207,7 @@ set nocompatible
 set number
 set ttyfast
 set showcmd
-set cmdheight=2
+set cmdheight=1
 set swapfile
 set nobackup
 set noerrorbells
