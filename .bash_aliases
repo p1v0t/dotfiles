@@ -12,4 +12,5 @@ alias dt='cd ~/Desktop'
 alias dl='cd ~/Downloads'
 
 alias bsrc='. ~/.bashrc && echo "~/.bashrc sourced"' 
+alias readpdf='xdg-open'
 
