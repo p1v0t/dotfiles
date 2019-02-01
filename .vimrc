@@ -13,7 +13,6 @@ endif
 filetype plugin indent on
 
 let mapleader = " "
-let maplocalleader = ","
 
 augroup reload_vimrc
     autocmd!
@@ -25,6 +24,8 @@ nnoremap - :
 nnoremap <silent> <leader>ve :vsplit $MYVIMRC<CR>
 nnoremap <silent> <leader>vs :w <bar> source $MYVIMRC<CR>
 nnoremap <silent> <leader>be :vsplit ~/.bashrc<CR>
+nnoremap <silent> <leader>bs :!source ~/.bashrc<CR>
+
 noremap <leader>nn :NERDTreeToggle<cr>
 
 noremap <Up> <nop>
@@ -68,7 +69,7 @@ Plug 'lervag/vimtex'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'mileszs/ack.vim'
-
+Plug 'CoatiSoftware/vim-sourcetrail'
 
 call plug#end()
 
@@ -107,15 +108,15 @@ let g:rbpt_colorpairs=[
 " }}}
 
 " vim-clang-format {{{
-let g:clang_format#command='clang-format'
+let g:clang_format#command='clang-format-7'
 let g:clang_format#detect_style_file=1
 " }}}
 
 " vim-cmake {{{
 "let g:cmake_install_prefix
 let g:cmake_build_type="RelWithDebInfo"
-let g:cmake_cxx_compiler="clang++"
-let g:cmake_c_compiler="clang"
+let g:cmake_cxx_compiler="g++"
+let g:cmake_c_compiler="gcc"
 let g:cmake_project_generator="Unix Makefiles"
 let g:cmake_export_compile_commands=1
 let g:cmake_ycm_symlinks=1
@@ -133,24 +134,24 @@ let g:ale_lint_on_text_changed=1
 let ale_c_build_dir_names=['build','Build','bin', '../build', '../Build']
 let ale_c_build_dir='../build'
 
-let g:ale_cpp_clang_executable='clang'
+let g:ale_cpp_clang_executable='clang-7'
 let g:ale_cpp_clang_options='-Wall -Wshadow -Wnon-virtual-dtor
     \ -Wpedantic -Woverloaded-virtual -Wdeprecated -Wconversion
-    \-Wold-style-cast -Wnon-virtual-dtor -Weffc++ -std=c++17'
+    \ -Wold-style-cast -Wnon-virtual-dtor -Weffc++ -std=c++17'
 
 let g:ale_cpp_clangd_executable='clangd'
 let g:ale_cpp_clangd_option=''
 
-let g:ale_cpp_clangcheck_executable='clang-check'
+let g:ale_cpp_clangcheck_executable='clang-check-7'
 let g:ale_cpp_clangcheck_options=''
 
-let g:ale_c_clangformat_executable='clang-format'
+let g:ale_c_clangformat_executable='clang-format-7'
 let g:ale_c_clangformat_options='.clang-format'
 
-let g:ale_c_clangtidy_executable='clang-tidy'
+let g:ale_c_clangtidy_executable='clang-tidy-7'
 let g:ale_c_clangtidy_checks=['*']
 
-let g:ale_cpp_clangtidy_executable='clang-tidy'
+let g:ale_cpp_clangtidy_executable='clang-tidy-7'
 " hint:
 " to check 'something-*`
 " to disable check '-something*'
