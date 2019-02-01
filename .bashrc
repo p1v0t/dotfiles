@@ -104,11 +104,24 @@ export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 
+export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/texlive/2018/bin/x86_64-linux:$PATH
 export PATH=/opt/cmake/bin:$PATH
+export PATH=/opt/clion/bin:$PATH
+export PATH=/opt/nodeLTS/bin:$PATH
 export PATH=/opt/go/bin:$PATH
+export PATH=/opt/nim-0.19.2/bin:$PATH
 export PATH=/home/adem/.local/bin:$PATH
+export PATH="$PATH:$HOME/bin"
+#export PATH="$PATH:$HOME/monero/build/release/bin"
 
-export CC=/usr/local/bin/clang
-export CXX=/usr/local/bin/clang++
+export PATH=/usr/local/texlive/2018/texmf-dist/doc/man:$PATH
+export PATH=/usr/local/texlive/2018/texmf-dist/doc/info:$PATH
+export PATH=/opt/arduino-1.8.8:$PATH
+
+#export CXX=/usr/local/bin/clang++
+#export CC=/usr/local/bin/clang
+ export CXX=/usr/bin/g++
+ export CC=/usr/bin/gcc
 
 stty -ixon
