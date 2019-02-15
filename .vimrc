@@ -1,8 +1,8 @@
-if !exists("g:syntax_on")
+if !exists('g:syntax_on')
     syntax enable
 endif
 
-if has("autocmd")
+if has('autocmd')
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
@@ -12,7 +12,7 @@ endif
 
 filetype plugin indent on
 
-let mapleader = " "
+let mapleader = ' '
 
 augroup reload_vimrc
     autocmd!
@@ -55,12 +55,13 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'vhdirk/vim-cmake'
+Plug 'fatih/vim-go'
 Plug 'pboettch/vim-cmake-syntax'
 Plug 'w0rp/ale'
 Plug 'Valloric/YouCompleteMe'
 Plug 'SirVer/ultisnips'
 Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'honza/vim-snippets'
+Plug 'p1v0t/vim-snippets'
 Plug 'rhysd/vim-clang-format'
 Plug 'rdnetto/YCM-Generator'
 Plug 'vim-airline/vim-airline'
@@ -70,6 +71,7 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'mileszs/ack.vim'
 Plug 'CoatiSoftware/vim-sourcetrail'
+Plug 'tell-k/vim-autopep8'
 
 call plug#end()
 
@@ -114,10 +116,10 @@ let g:clang_format#detect_style_file=1
 
 " vim-cmake {{{
 "let g:cmake_install_prefix
-let g:cmake_build_type="RelWithDebInfo"
-let g:cmake_cxx_compiler="g++"
-let g:cmake_c_compiler="gcc"
-let g:cmake_project_generator="Unix Makefiles"
+let g:cmake_build_type='MinSizeRel'
+let g:cmake_cxx_compiler='g++'
+let g:cmake_c_compiler='gcc'
+let g:cmake_project_generator='Unix Makefiles'
 let g:cmake_export_compile_commands=1
 let g:cmake_ycm_symlinks=1
 " }}}
@@ -129,17 +131,26 @@ let g:NERDTreeShowHidden=1
 " }}}
 
 " ale {{{
+let g:ale_sign_error = 'Oo'
+let g:ale_sign_warning = '):'
+
 let g:ale_lint_on_text_changed=1
+let g:ale_c_parse_makefile=0 
+let g:ale_c_parse_compile_commands=1
 
 let ale_c_build_dir_names=['build','Build','bin', '../build', '../Build']
 let ale_c_build_dir='../build'
 
-let g:ale_cpp_clang_executable='clang-7'
+let g:ale_cpp_clangcheck_executable='clang-check-7'
+let g:ale_cpp_clang_executable='clang++-7'
 let g:ale_cpp_clang_options='-Wall -Wshadow -Wnon-virtual-dtor
     \ -Wpedantic -Woverloaded-virtual -Wdeprecated -Wconversion
     \ -Wold-style-cast -Wnon-virtual-dtor -Weffc++ -std=c++17'
 
-let g:ale_cpp_clangd_executable='clangd'
+let g:ale_cpp_cpplint_executable='cpplint'
+let g:ale_cpp_clang_options='verbose=0 quite'
+
+let g:ale_cpp_clangd_executable='clangd-7'
 let g:ale_cpp_clangd_option=''
 
 let g:ale_cpp_clangcheck_executable='clang-check-7'
@@ -164,6 +175,17 @@ let g:ale_cmake_cmakelint_executable='/usr/local/bin/cmakelint'
 let g:ale_cmake_cmakelint_options='--filter=linelength package/consistency +readability/+logic whitespace/+eol'
 
 let g:ale_cpp_clangcheck_executable='cppcheck'
+
+if executable('cquery')
+   au User lsp_setup call lsp#register_server({
+     \ 'name': 'cquery',
+     \ 'cmd': {server_info->['cquery']},
+     \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
+     \ 'initialization_options': { 'cacheDirectory': '~/.cache/cquery' },
+     \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+     \ })
+endif
+
 " }}}
 "
 " youcompleteme {{{
@@ -173,12 +195,14 @@ let g:ycm_warning_symbol=':('
 " }}}
 
 " ultisnip {{{
+"let g:UltiSnipsSnippetDirectories=['UltiSnips','myPlugins']
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/plugged/vim-snippets/UltiSnips']
 let g:UltiSnipsEditSplit='vertical'
 let g:UltiSnipsEnableSnipMate=1
 
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsExpandTrigger='<c-j>'
+let g:UltiSnipsJumpForwardTrigger='<c-b>'
+let g:UltiSnipsJumpBackwardTrigger='<c-z>'
 " }}}
 
 " airline {{{
@@ -195,13 +219,18 @@ let g:livepreview_cursorhold_recompile=1
 
 let g:ackprg = 'ag --vimgrep'
 
+" vim-autopep
+" nothing for now
+" }}}
+
+
 " }}}
 " }}}
 " }}}
 
 " variables {{{
-set tabstop=8
-set shiftwidth=8
+set tabstop=4
+set shiftwidth=4
 set smarttab
 set expandtab
 set nocompatible
