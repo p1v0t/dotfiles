@@ -14,14 +14,15 @@ alias cp='cp -v'
 alias mkdir='mkdir -v'
 alias md='mkdir'
 
-alias dt='cd ~/Desktop'
+alias h='cd ~'
+alias d='cd ~/Desktop'
 alias dl='cd ~/Downloads'
 
 # more defensive removes after some bad experiences 
 alias rm='rm --interactive --verbose --preserve-root' 
 alias rmd='rm --dir --interactive --verbose --preserve-root --recursive'
 
-alias bsrc='. ~/.bashrc && echo "~/.bashrc sourced"' 
+alias s='. ~/.bashrc && echo "~/.bashrc sourced"' 
 alias readpdf='xdg-open'
 
 alias ainstall="sudo apt-get install"
