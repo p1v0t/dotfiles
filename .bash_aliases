@@ -9,6 +9,11 @@ alias l='ls -CF --color=auto'
 alias up='cd ../'
 alias upp='cd ../../'
 
+alias ..='cd ..'
+alias ...='cd ../../'
+alias ....='cd ../../../'
+alias .....='cd ../../../../'
+
 alias mv='mv -v'
 alias cp='cp -v'
 alias mkdir='mkdir -v'
