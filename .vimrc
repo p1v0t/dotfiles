@@ -6,10 +6,6 @@ if has('autocmd')
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-if empty(v:servername) && exists('*remote_startserver')
-  call remote_startserver('VIM')
-endif
-
 filetype plugin indent on
 
 let mapleader = ' '
@@ -56,35 +52,28 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
 Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'vhdirk/vim-cmake'
+"Plug 'vhdirk/vim-cmake'
 Plug 'fatih/vim-go'
-Plug 'pboettch/vim-cmake-syntax'
+"Plug 'pboettch/vim-cmake-syntax'
 Plug 'w0rp/ale'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer'}
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer'}
 Plug 'SirVer/ultisnips'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'p1v0t/vim-snippets'
 Plug 'rhysd/vim-clang-format'
 Plug 'vim-airline/vim-airline'
 Plug 'richq/vim-cmake-completion'
-Plug 'lervag/vimtex'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'mileszs/ack.vim'
-Plug 'CoatiSoftware/vim-sourcetrail'
-Plug 'tell-k/vim-autopep8'
+Plug 'google/vim-maktaba'
+Plug 'bazelbuild/vim-bazel'
+Plug 'neomake/neomake'
+"Plug 'CoatiSoftware/vim-sourcetrail'
 
 call plug#end()
 
 " pluginsVariables {{{
-" vimtex {{{
-let g:tex_flavor = 'XeTeX'
 
-if !exists('g:ycm_semantic_triggers')
-  let g:ycm_semantic_triggers = {}
-endif
-let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
-" }}}
-"
 " nerdtree {{{
 let g:NERDTreeWinPos='right'
 let g:NERDTreeWinSize=20
@@ -121,15 +110,8 @@ let g:airline#extensions#ycm#warning_symbol='W:'
 let g:airline_theme='dracula'
 "let g:airline_exclude_filetypes = []
 
-" vim-latex-live-preview {{{
-let g:livepreview_engine='evince'
-let g:livepreview_cursorhold_recompile=1
-" }}}
-
 let g:ackprg = 'ag --vimgrep'
 
-" vim-autopep
-" nothing for now
 " }}}
 
 
