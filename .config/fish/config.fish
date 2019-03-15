@@ -13,11 +13,7 @@ function ls
     command ls --color=auto $argv
 end
 
-function weather -d "show wheather"
-   curl -s wttr.in/$argv[1]
-end
-
-function h -d "home sweet home"
+function h --description "home sweet home"
    cd ~
 end
 
@@ -46,7 +42,14 @@ function uu
 	upgrade
 end
 
-function ainstall -d "install packages"
+function ainstall -d 'install packages'
     command sudo apt-get install $argv
 end
 
+function efc -d 'edit fish configuration'
+   command vim ~/.config/fish/config.fish
+end
+
+function sfc -d 'source fish configuration'
+   command source ~/.config/fish/config.fish
+end
