@@ -9,6 +9,7 @@ shopt -s histappend
 HISTCONTROL=ignoreboth
 HISTSIZE=10000
 HISTFILESIZE=2000
+export EDITOR=vim
 
 shopt -s checkwinsize
 
@@ -119,6 +120,7 @@ export PATH=/usr/local/texlive/2018/texmf-dist/doc/info:$PATH
 export PATH=/opt/arduino-1.8.8:$PATH
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=/usr/home/adem/Desktop/letsGo:$PATH
+export BOOST_ROOT=/usr
 
 #export CXX=/usr/local/bin/clang++
 #export CC=/usr/local/bin/clang
@@ -126,3 +128,4 @@ export GOPATH=/usr/home/adem/Desktop/letsGo:$PATH
  export CC=/usr/bin/gcc
 
 stty -ixon
+source /home/adem/vcpkg/scripts/vcpkg_completion.bash

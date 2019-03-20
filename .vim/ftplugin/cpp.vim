@@ -17,7 +17,6 @@ setlocal makeprg=make
 
 nnoremap <silent> <F5> :w <bar> !clear && g++
 	\ -Wshadow
-	\ -Wnon-virtual-dtor
 	\ -Wpedantic 
 	\ -Woverloaded-virtual 
 	\ -Wdeprecated
@@ -42,7 +41,7 @@ let g:clang_include_fixer_jump_to_include=0
 let g:clang_include_fixer_query_mode=0
 
 " vim-clang-format {{{
-let g:clang_format#command='clang-format-7'
+let g:clang_format#command='clang-format'
 let g:clang_format#code_style='chromium'
 let g:clang_format#detect_style_file=1
 let g:clang_format#auto_format=1 

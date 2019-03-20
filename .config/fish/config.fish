@@ -1,5 +1,11 @@
 set -U EDITOR vim
 set PATH $PATH $HOME/clion-2018.3.4/bin
+set PATH $PATH $HOME/appimages
+set PATH $PATH /opt/vcpkg
+set PATH $PATH /usr/local/go/bin
+
+alias nvim='nvim.appimage'
+alias vim='nvim'
 
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -12,6 +18,11 @@ end
 function ls
     command ls --color=auto $argv
 end
+
+function ll
+    command ls --all --color=auto $argv
+end
+
 
 function h --description "home sweet home"
    cd ~
@@ -51,5 +62,5 @@ function efc -d 'edit fish configuration'
 end
 
 function sfc -d 'source fish configuration'
-   command source ~/.config/fish/config.fish
+   source $HOME/.config/fish/config.fish
 end

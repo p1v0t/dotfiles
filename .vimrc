@@ -21,6 +21,7 @@ augroup END
 nnoremap - :
 nnoremap <silent> <leader>ve :vsplit $MYVIMRC<CR>
 nnoremap <silent> <leader>vs :w <bar> source $MYVIMRC<CR>
+
 nnoremap <silent> <leader>be :vsplit ~/.bashrc<CR>
 nnoremap <silent> <leader>bs :!source ~/.bashrc<CR>
 
@@ -68,6 +69,7 @@ Plug 'mileszs/ack.vim'
 Plug 'google/vim-maktaba'
 Plug 'bazelbuild/vim-bazel'
 Plug 'neomake/neomake'
+Plug 'OmniSharp/omnisharp-vim'
 "Plug 'CoatiSoftware/vim-sourcetrail'
 
 call plug#end()
@@ -87,6 +89,7 @@ let g:ale_lint_on_text_changed=1
 " }}}
 "
 " youcompleteme {{{
+let g:ycm_server_python_interpreter = 'python'
 let g:ycm_confirm_extra_conf=0
 let g:ycm_error_symbol='oO'
 let g:ycm_warning_symbol=':('
