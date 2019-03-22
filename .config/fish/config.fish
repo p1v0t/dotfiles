@@ -1,4 +1,6 @@
 set -U EDITOR vim
+set -U GIT_EDITOR vim
+
 set PATH $PATH $HOME/clion-2018.3.4/bin
 set PATH $PATH $HOME/appimages
 set PATH $PATH /opt/vcpkg
@@ -12,7 +14,11 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 
 function rm 
-   command rm --preserve-root $argv
+   command rm --preserve-root $argv[1]
+end
+
+function rmd 
+   command rm --preserve-root --interactive=once --recursive --dir $argv[1]
 end
 
 function ls
@@ -22,7 +28,6 @@ end
 function ll
     command ls --all --color=auto $argv
 end
-
 
 function h --description "home sweet home"
    cd ~
@@ -64,3 +69,5 @@ end
 function sfc -d 'source fish configuration'
    source $HOME/.config/fish/config.fish
 end
+
+set fish_greeting 
