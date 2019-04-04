@@ -10,22 +10,16 @@ filetype plugin indent on
 
 let mapleader = ' '
 
-set runtimepath+=/home/adem/Desktop/MarkdownComment/
-
-augroup reload_vimrc
-    autocmd!
-    autocmd BufWritePost $MYVIMRC source $MYVIMRC
-augroup END
-
 " mapping {{{
-nnoremap - :
-nnoremap <silent> <leader>ve :vsplit $MYVIMRC<CR>
-nnoremap <silent> <leader>vs :w <bar> source $MYVIMRC<CR>
+nnoremap <silent> <leader>ve :vsplit ~/.vimrc<CR>
+nnoremap <silent> <leader>vs :w <bar> source ~/.vimrc<CR>
 
-nnoremap <silent> <leader>be :vsplit ~/.bashrc<CR>
-nnoremap <silent> <leader>bs :!source ~/.bashrc<CR>
+nnoremap <silent> <leader>fe :vsplit ~/.config/fish/config.fish <CR>
+nnoremap <silent> <leader>fs :!source ~/.config/fish/config.fish <CR>
 
 noremap <leader>nn :NERDTreeToggle<cr>
+
+nnoremap - :
 
 noremap <Up> <nop>
 noremap <Down> <nop>
@@ -46,64 +40,76 @@ noremap <C-l> <C-W>l
 " plugins {{{
 call plug#begin('~/.vim/plugged')
 
-Plug 'scrooloose/nerdtree'
-Plug 'dracula/vim'
-Plug 'chriskempson/base16-vim'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-eunuch'
-Plug 'octol/vim-cpp-enhanced-highlight'
-"Plug 'vhdirk/vim-cmake'
-Plug 'fatih/vim-go'
-"Plug 'pboettch/vim-cmake-syntax'
-Plug 'w0rp/ale'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer'}
-Plug 'SirVer/ultisnips'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'p1v0t/vim-snippets'
-Plug 'rhysd/vim-clang-format'
-Plug 'vim-airline/vim-airline'
-Plug 'richq/vim-cmake-completion'
+Plug 'neoclide/coc.nvim', {'do': 'yarn install'}
 Plug 'OmniSharp/omnisharp-vim'
+Plug 'https://github.com/w0rp/ale'
+Plug 'p1v0t/vim-snippets'
+
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-eunuch'
+Plug 'https://github.com/tpope/vim-fugitive'
+
+Plug 'scrooloose/nerdtree'
+Plug 'vim-airline/vim-airline'
+Plug 'dracula/vim'
+
+Plug 'rhysd/vim-clang-format'
 Plug 'mileszs/ack.vim'
+
 Plug 'google/vim-maktaba'
 Plug 'bazelbuild/vim-bazel'
-Plug 'neomake/neomake'
-Plug 'OmniSharp/omnisharp-vim'
-"Plug 'CoatiSoftware/vim-sourcetrail'
 
 call plug#end()
 
 " pluginsVariables {{{
 
+" coc-settings {{{
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? coc#rpc#request('doKeymap', ['snippets-expand-jump','']) :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+let g:coc_snippet_next = '<tab>'
+
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>" 
+
+nnoremap <leader>w <Plug>(coc-diagnostic-info) 
+nnoremap <leader>wn <Plug>(coc-diagnostic-next)
+nnoremap <leader>wh <Plug>(coc-diagnostic-prev)
+
+nnoremap <leader>cd <Plug>(coc-definition) 
+nnoremap <leader>gh <Plug>(coc-declaration)
+nnoremap <leader><F2> <Plug>(coc-rename)
+
+
+"nnoremap <leader>gh <Plug>(coc-implementation)
+"nnoremap <leader>gh <Plug>(coc-type-definition)
+"nnoremap <leader>gh <Plug>(coc-references)
+"nnoremap <leader>gh <Plug>(coc-format-selected)
+"nnoremap <leader>gh <Plug>(coc-format)
+"nnoremap <leader>gh <Plug>(coc-codeaction)
+"nnoremap <leader>gh <Plug>(coc-codeaction-selected)
+"nnoremap <leader>gh <Plug>(coc-openlink)
+"nnoremap <leader>gh <Plug>(coc-fix-current)
+
+let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+
+let airline#extensions#coc#error_symbol = 'W'
+let airline#extensions#coc#warning_symbol = 'E'
+" }}}
+
 " nerdtree {{{
 let g:NERDTreeWinPos='right'
 let g:NERDTreeWinSize=20
 let g:NERDTreeShowHidden=1
-" }}}
-
-" ale {{{
-let g:ale_sign_error = 'Oo'
-let g:ale_sign_warning = '):'
-let g:ale_lint_on_text_changed=1
-" }}}
-"
-" youcompleteme {{{
-let g:ycm_server_python_interpreter = 'python'
-let g:ycm_confirm_extra_conf=0
-let g:ycm_error_symbol='oO'
-let g:ycm_warning_symbol=':('
-" }}}
-
-" ultisnip {{{
-"let g:UltiSnipsSnippetDirectories=['UltiSnips','myPlugins']
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/plugged/vim-snippets/UltiSnips']
-let g:UltiSnipsEditSplit='vertical'
-let g:UltiSnipsEnableSnipMate=1
-
-let g:UltiSnipsExpandTrigger='<c-j>'
-let g:UltiSnipsJumpForwardTrigger='<c-b>'
-let g:UltiSnipsJumpBackwardTrigger='<c-z>'
 " }}}
 
 " airline {{{
@@ -112,14 +118,12 @@ let g:airline#extensions#ycm#error_symbol='E:'
 let g:airline#extensions#ycm#warning_symbol='W:'
 let g:airline_theme='dracula'
 "let g:airline_exclude_filetypes = []
+" }}}
 
+" ack {{{
 let g:ackprg = 'ag --vimgrep'
-
 " }}}
 
-
-" }}}
-" }}}
 " }}}
 
 " variables {{{
@@ -151,7 +155,6 @@ set backspace=indent,eol,start
 set wildmenu
 set encoding=utf-8 nobomb
 set binary
-"set noendofline
 set autoread
 set mousehide
 set spelllang=en_US
