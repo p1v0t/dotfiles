@@ -3,23 +3,14 @@ set -U GIT_EDITOR vim
 
 set PATH $PATH $HOME/clion-2018.3.4/bin
 set PATH $PATH $HOME/appimages
-set PATH $PATH /opt/vcpkg
 set PATH $PATH /usr/local/go/bin
+set PATH $PATH /home/adem/go/bin
 
 alias nvim='nvim.appimage'
-alias vim='nvim'
 
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-
-function rm 
-   command rm --preserve-root $argv[1]
-end
-
-function rmd 
-   command rm --preserve-root --interactive=once --recursive --dir $argv[1]
-end
 
 function ls
     command ls --color=auto $argv
@@ -71,3 +62,5 @@ function sfc -d 'source fish configuration'
 end
 
 set fish_greeting 
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
