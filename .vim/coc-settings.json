@@ -22,9 +22,9 @@
       "filetypes": ["c", "cpp", "objc", "objcpp"]
     },
 
-   	"golang": {
-      "command": "bingo",
-      "args": ["--diagnostics-style=instant"],
+    "golang": {
+      "command": "gopls",
+      "args": [],
       "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
       "filetypes": ["go"]
     }
