@@ -1,7 +1,16 @@
 {
 "suggest.autoTrigger": "always",
-"list.nextKeymap": "<C-j>",
-"list.previousKeymap": "<C-k>",
+"suggest.minTriggerInputLength": 3,
+"suggest.snippetIndicator": "⌲ ",
+"suggest.triggerAfterInsertEnter": true,
+
+"java.home": "/home/adem/Downloads/jdk1.8.0_201",
+"java.jdt.ls.home": "/home/adem/Downloads/jdt-language-server-0.1.0-201702132114/",
+"java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication",
+"java.format.enabled": true,
+"java.completion.enabled": true,
+"java.errors.incompleteClasspath.severity": "warning",
+
 
  "languageserver": {
 
@@ -22,11 +31,24 @@
       "filetypes": ["c", "cpp", "objc", "objcpp"]
     },
 
-    "golang": {
-      "command": "gopls",
-      "args": [],
+     "golang": {
+      "command": "bingo",
+      "args": ["--diagnostics-style=instant"],
       "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
       "filetypes": ["go"]
+    },
+
+    "dart": {
+      "command": "dart_language_server",
+      "args": [],
+      "filetypes": ["dart"],
+      "initializationOptions": {},
+      "settings": {
+        "dart": {
+          "validation": {},
+          "completion": {}
+        }
+      }
     }
   }
 }
