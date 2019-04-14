@@ -40,10 +40,23 @@ noremap <C-l> <C-W>l
 " plugins {{{
 call plug#begin('~/.vim/plugged')
 
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
+Plug 'Shougo/neosnippet.vim'
+Plug 'p1v0t/neosnippet-snippets'
+
+Plug 'Shougo/neoinclude.vim'
+Plug 'jsfaint/coc-neoinclude'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install'}
-Plug 'OmniSharp/omnisharp-vim'
+
 Plug 'https://github.com/w0rp/ale'
-Plug 'p1v0t/vim-snippets'
+Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries' }
 
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
@@ -64,34 +77,55 @@ call plug#end()
 " pluginsVariables {{{
 
 " coc-settings {{{
+
+let g:deoplete#enable_at_startup = 1
+
+let g:coc_status_error_sign = 'E'
+let g:coc_status_warning_sign = 'W'
+
+let g:coc_filetype_map = {
+     \ 'cc': 'cpp',
+	 \'hpp' : 'cpp',
+	 \'C' : 'cpp'
+	 \}
+
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? coc#rpc#request('doKeymap', ['snippets-expand-jump','']) :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+imap <expr><TAB>
+ \ pumvisible() ? "\<C-n>" :
+ \ neosnippet#expandable_or_jumpable() ?
+ \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-let g:coc_snippet_next = '<tab>'
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+ \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+imap <expr><CR>
+\ (pumvisible() && neosnippet#expandable()) ?
+\ "\<Plug>(neosnippet_expand)" : "\<CR>"
+
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
 
 inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>" 
 
-nnoremap <leader>w <Plug>(coc-diagnostic-info) 
-nnoremap <leader>wn <Plug>(coc-diagnostic-next)
-nnoremap <leader>wh <Plug>(coc-diagnostic-prev)
+nnoremap t <Plug>(coc-type-definition)
+nnoremap n <Plug>(coc-implementation)
 
-nnoremap <leader>cd <Plug>(coc-definition) 
-nnoremap <leader>gh <Plug>(coc-declaration)
-nnoremap <leader><F2> <Plug>(coc-rename)
+nnoremap <leader>w <Plug>(coc-definition) 
+nnoremap <leader>n <Plug>(coc-declaration)
 
+nnoremap <leader>i <Plug>(coc-diagnostic-info) 
+nnoremap <leader>n <Plug>(coc-diagnostic-next)
+nnoremap <leader>p <Plug>(coc-diagnostic-prev)
+nnoremap <leader>f <Plug>(coc-action-fold)
 
-"nnoremap <leader>gh <Plug>(coc-implementation)
-"nnoremap <leader>gh <Plug>(coc-type-definition)
-"nnoremap <leader>gh <Plug>(coc-references)
+nnoremap <F2> <Plug>(coc-rename)
+
+nnoremap <leader>gh <Plug>(coc-references)
 "nnoremap <leader>gh <Plug>(coc-format-selected)
 "nnoremap <leader>gh <Plug>(coc-format)
 "nnoremap <leader>gh <Plug>(coc-codeaction)
@@ -113,18 +147,16 @@ let g:NERDTreeShowHidden=1
 " }}}
 
 " airline {{{
-let g:airline#extensions#ycm#enabled=1
-let g:airline#extensions#ycm#error_symbol='E:'
-let g:airline#extensions#ycm#warning_symbol='W:'
+
 let g:airline_theme='dracula'
 "let g:airline_exclude_filetypes = []
+
 " }}}
 
 " ack {{{
 let g:ackprg = 'ag --vimgrep'
 " }}}
 
-" }}}
 
 " variables {{{
 set tabstop=4
