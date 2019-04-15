@@ -43,9 +43,7 @@ call plug#begin('~/.vim/plugged')
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
+  Plug 'Shougo/deoplete.nvim' | Plug 'roxma/nvim-yarp'| Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
 Plug 'Shougo/neosnippet.vim'
@@ -66,11 +64,11 @@ Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'dracula/vim'
 
-Plug 'rhysd/vim-clang-format'
 Plug 'mileszs/ack.vim'
+Plug 'rhysd/vim-clang-format', {'for' : ['c', 'cpp']}
 
-Plug 'google/vim-maktaba'
-Plug 'bazelbuild/vim-bazel'
+Plug 'google/vim-maktaba', {'for' : ['c', 'cpp']}
+Plug 'bazelbuild/vim-bazel', {'for' : ['c', 'cpp']}
 
 call plug#end()
 
@@ -144,10 +142,10 @@ let airline#extensions#coc#warning_symbol = 'E'
 let g:NERDTreeWinPos='right'
 let g:NERDTreeWinSize=20
 let g:NERDTreeShowHidden=1
+let g:NERDMinimalMenu=1
 " }}}
 
 " airline {{{
-
 let g:airline_theme='dracula'
 "let g:airline_exclude_filetypes = []
 
@@ -156,7 +154,6 @@ let g:airline_theme='dracula'
 " ack {{{
 let g:ackprg = 'ag --vimgrep'
 " }}}
-
 
 " variables {{{
 set tabstop=4
