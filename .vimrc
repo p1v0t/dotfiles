@@ -2,6 +2,8 @@ if !exists('g:syntax_on')
     syntax enable
 endif
 
+nnoremap ff  <plug>(termopen) 
+
 if has('autocmd')
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
@@ -11,13 +13,14 @@ filetype plugin indent on
 let mapleader = ' '
 
 " mapping {{{
-nnoremap <silent> <leader>ve :vsplit ~/.vimrc<CR>
-nnoremap <silent> <leader>vs :w <bar> source ~/.vimrc<CR>
+nnoremap <silent>ve :vsplit ~/.vimrc<CR>
+nnoremap <silent>vs :w <bar> source ~/.vimrc<CR>
 
 nnoremap <silent> <leader>fe :vsplit ~/.config/fish/config.fish <CR>
 nnoremap <silent> <leader>fs :!source ~/.config/fish/config.fish <CR>
 
 noremap <leader>nn :NERDTreeToggle<cr>
+noremap cf <Plug>(operator-clang-format)
 
 nnoremap - :
 
@@ -40,18 +43,12 @@ noremap <C-l> <C-W>l
 " plugins {{{
 call plug#begin('~/.vim/plugged')
 
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim' | Plug 'roxma/nvim-yarp'| Plug 'roxma/vim-hug-neovim-rpc'
-endif
+Plug 'Shougo/neoinclude.vim'
+Plug 'jsfaint/coc-neoinclude'
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
 Plug 'Shougo/neosnippet.vim'
 Plug 'p1v0t/neosnippet-snippets'
-
-Plug 'Shougo/neoinclude.vim'
-Plug 'jsfaint/coc-neoinclude'
-Plug 'neoclide/coc.nvim', {'do': 'yarn install'}
 
 Plug 'https://github.com/w0rp/ale'
 Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries' }
@@ -61,7 +58,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'https://github.com/tpope/vim-fugitive'
 
 Plug 'scrooloose/nerdtree'
-Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
 Plug 'dracula/vim'
 
 Plug 'mileszs/ack.vim'
@@ -75,67 +72,110 @@ call plug#end()
 " pluginsVariables {{{
 
 " coc-settings {{{
-
-let g:deoplete#enable_at_startup = 1
-
-let g:coc_status_error_sign = 'E'
-let g:coc_status_warning_sign = 'W'
-
-let g:coc_filetype_map = {
-     \ 'cc': 'cpp',
-	 \'hpp' : 'cpp',
-	 \'C' : 'cpp'
-	 \}
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-imap <expr><TAB>
- \ pumvisible() ? "\<C-n>" :
- \ neosnippet#expandable_or_jumpable() ?
- \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
- \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-imap <expr><CR>
-\ (pumvisible() && neosnippet#expandable()) ?
-\ "\<Plug>(neosnippet_expand)" : "\<CR>"
-
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-
+" Use <c-space> for trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
-nnoremap t <Plug>(coc-type-definition)
-nnoremap n <Plug>(coc-implementation)
+" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-nnoremap <leader>w <Plug>(coc-definition) 
-nnoremap <leader>n <Plug>(coc-declaration)
+" Use `[c` and `]c` for navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
-nnoremap <leader>i <Plug>(coc-diagnostic-info) 
-nnoremap <leader>n <Plug>(coc-diagnostic-next)
-nnoremap <leader>p <Plug>(coc-diagnostic-prev)
-nnoremap <leader>f <Plug>(coc-action-fold)
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
-nnoremap <F2> <Plug>(coc-rename)
+" Use K for show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-nnoremap <leader>gh <Plug>(coc-references)
-"nnoremap <leader>gh <Plug>(coc-format-selected)
-"nnoremap <leader>gh <Plug>(coc-format)
-"nnoremap <leader>gh <Plug>(coc-codeaction)
-"nnoremap <leader>gh <Plug>(coc-codeaction-selected)
-"nnoremap <leader>gh <Plug>(coc-openlink)
-"nnoremap <leader>gh <Plug>(coc-fix-current)
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
-let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
-let airline#extensions#coc#error_symbol = 'W'
-let airline#extensions#coc#warning_symbol = 'E'
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+vmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Use `:Format` for format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` for fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+
+" Add diagnostic info for https://github.com/itchyny/lightline.vim
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'coc#status'
+      \ },
+      \ }
+
+
+
+" Using CocList
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " }}}
 
 " nerdtree {{{
@@ -157,6 +197,12 @@ let g:ackprg = 'ag --vimgrep'
 
 " variables {{{
 set tabstop=4
+set hidden
+set nobackup
+set nowritebackup
+set updatetime=300
+set shortmess+=c 
+set signcolumn=yes
 set shiftwidth=4
 set smarttab
 set expandtab
@@ -174,7 +220,7 @@ set cursorline
 set colorcolumn=110
 set title
 set showmatch
-set showmode
+set noshowmode
 set mouse=v
 set modifiable
 set splitright
@@ -189,6 +235,7 @@ set mousehide
 set spelllang=en_US
 set fileformat=unix
 set autoread
+set laststatus=2
 " }}}
 
 colorscheme dracula
