@@ -1,16 +1,11 @@
 {
 "suggest.autoTrigger": "always",
-"suggest.minTriggerInputLength": 3,
 "suggest.snippetIndicator": "⌲ ",
 "suggest.triggerAfterInsertEnter": true,
-
-"java.home": "/home/adem/Downloads/jdk1.8.0_201",
-"java.jdt.ls.home": "/home/adem/Downloads/jdt-language-server-0.1.0-201702132114/",
-"java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication",
-"java.format.enabled": true,
-"java.completion.enabled": true,
-"java.errors.incompleteClasspath.severity": "warning",
-
+"suggest.timeout": 500,
+"suggest.noselect": false,
+"suggest.minTriggerInputLength": 3,
+"suggest.acceptSuggestionOnCommitCharacter": true,
 
  "languageserver": {
 
@@ -23,12 +18,6 @@
            "directory": "/tmp/ccls"
          }
        }
-    },
-
-    "clangd": {
-      "command": "clangd",
-      "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["c", "cpp", "objc", "objcpp"]
     },
 
      "golang": {
