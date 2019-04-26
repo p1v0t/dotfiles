@@ -6,19 +6,51 @@
 "suggest.noselect": false,
 "suggest.minTriggerInputLength": 3,
 "suggest.acceptSuggestionOnCommitCharacter": true,
+"suggest.disableMenu": true,
+"suggest.maxCompleteItemCount": 100,
+"suggest.detailMaxLength": 120,
+
+"diagnostic.enable": true,
+"diagnostic.refreshOnInsertMode": true,
+"diagnostic.checkCurrentLine": false,
+"diagnostic.displayByAle": false,
+
+"diagnostic.enableSign": true,
+"diagnostic.hintSign": "🤔",
+"diagnostic.warningSign": "⚡",
+"diagnostic.errorSign": "🔥",
+"diagnostic.infoSign": "🕶️",
+
+"workspace.ignoredFiletypes": [
+	"markdown",
+	"log",
+	"txt",
+	"help"
+],
+
+"coc.preferences.jumpCommand": "vsplit",
+
+"coc.preferences.snippets.enable": true,
+
 
  "languageserver": {
 
 	"ccls": {
       "command": "ccls",
       "filetypes": ["c", "cpp", "objc", "objcpp"],
-      "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+      "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/", "WORKSPACE"],
       "initializationOptions": {
          "cache": {
            "directory": "/tmp/ccls"
          }
        }
     },
+
+    "serve-d": {
+        "command": "serve-d",
+		"filetypes":["d"],
+		"rootPatterns":[".vim", ".git", "WORKSPACE"]
+	},
 
      "golang": {
       "command": "bingo",
@@ -29,6 +61,7 @@
 
     "dart": {
       "command": "dart_language_server",
+	  "detached": false,
       "args": [],
       "filetypes": ["dart"],
       "initializationOptions": {},
