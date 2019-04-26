@@ -71,6 +71,14 @@ call plug#end()
 
 " pluginsVariables {{{
 
+" neosnippet-snippets
+
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" }}}
+
 " coc-settings {{{
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -237,5 +245,7 @@ set fileformat=unix
 set autoread
 set laststatus=2
 " }}}
+
+let g:go_def_mode='gopls'
 
 colorscheme dracula
