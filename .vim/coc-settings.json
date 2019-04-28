@@ -1,6 +1,6 @@
 {
 "suggest.autoTrigger": "always",
-"suggest.snippetIndicator": "⌲ ",
+"suggest.snippetIndicator": "✈",
 "suggest.triggerAfterInsertEnter": true,
 "suggest.timeout": 500,
 "suggest.noselect": false,

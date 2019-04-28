@@ -12,10 +12,13 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
+alias cp='cp -r'
+
 function ls
     command ls --color=auto $argv
 end
 
+alias l=ls
 function ll
     command ls --all --color=auto $argv
 end
