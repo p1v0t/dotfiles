@@ -2,8 +2,6 @@ if !exists('g:syntax_on')
     syntax enable
 endif
 
-nnoremap ff  <plug>(termopen) 
-
 if has('autocmd')
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
@@ -45,7 +43,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'Shougo/neoinclude.vim'
 Plug 'jsfaint/coc-neoinclude'
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'for':['c', 'cpp', 'd', 'go', 'python', 'dart'], 'do': { -> coc#util#install()}}
 
 Plug 'Shougo/neosnippet.vim'
 Plug 'p1v0t/neosnippet-snippets'
@@ -57,9 +55,9 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 Plug 'https://github.com/tpope/vim-fugitive'
 
-Plug 'scrooloose/nerdtree'
-Plug 'itchyny/lightline.vim'
-Plug 'dracula/vim'
+Plug 'scrooloose/nerdtree',{'frozen': 1}
+Plug 'itchyny/lightline.vim',{'frozen': 1}
+Plug 'dracula/vim',{'frozen': 1}
 
 Plug 'mileszs/ack.vim'
 Plug 'rhysd/vim-clang-format', {'for' : ['c', 'cpp']}
@@ -120,7 +118,7 @@ function! s:show_documentation()
 endfunction
 
 " Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
@@ -164,8 +162,6 @@ let g:lightline = {
       \   'cocstatus': 'coc#status'
       \ },
       \ }
-
-
 
 " Using CocList
 " Show all diagnostics
