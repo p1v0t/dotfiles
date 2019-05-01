@@ -2,30 +2,20 @@ export EDITOR=/usr/local/bin/vim
 
 shopt -s histappend
 
+HISTFILE=~/.history
 HISTCONTROL=ignoreboth
 HISTSIZE=10000
 HISTFILESIZE=2000
+HISTIGNORE="cd:l:ls:pwd:rm:cat:less:more:vim:history:tree:[bf]g"
 
-
-if [ -f ~/.bash_aliases ]; then
-    source ~/.bash_aliases
-fi
-
-if [ -f ~/.bash_functions ]; then
-    source ~/.bash_functions
-fi
-
-if [ ! -a ~/.inputrc ]; then 
-     echo "$include /etc/inputrc" > ~/.inputrc; 
-fi
-echo 'set completion-ignore-case On' >> ~/.inputrc
+test -r ~/.bash_aliases && . ~/.bash_aliases || true
+test -r ~/.bash_functions && . ~/.bash_functions || true
 
 export PATH=/home/adem/.local/bin:$PATH
 export PATH="$PATH:$HOME/bin"
 
 export PATH=$HOME/appimages:$PATH
 
-export PATH=/opt/arduino-1.8.8:$PATH
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=/usr/home/adem/Desktop/letsGo:$PATH
 export BOOST_ROOT=/usr
