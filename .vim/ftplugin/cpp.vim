@@ -46,17 +46,17 @@ nnoremap <silent> <F6> :w <bar> !clear && clang++
 	\ -Wnon-virtual-dtor
 	\ -std=c++17 -O2 %  && ./a.out <CR>
 
-call coc#config('coc.preferences', {
-		\ 'timeout': 1000,
-		\ 'hoverTarget': 'echo',
-		\ 'languageserver': {
-		\   'ccls': {
-		\     "command": "ccls",
-      		\     "trace.server": "verbose",
-      		\     "filetypes": ["c", "cpp", "objc", "objcpp"]
-		\   }
-		\ }
-\})
+"call coc#config('coc.preferences', {
+"		\ 'timeout': 1000,
+"		\ 'hoverTarget': 'echo',
+"		\ 'languageserver': {
+"		\   'ccls': {
+"		\     "command": "ccls",
+"      		\     "trace.server": "verbose",
+"      		\     "filetypes": ["c", "cpp", "objc", "objcpp"]
+"		\   }
+"		\ }
+"\})
 
 "function! cmakebuild()
 "	let buildpath = ["build", "Build"]

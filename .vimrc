@@ -38,12 +38,13 @@ noremap <C-h> <C-W>h
 noremap <C-l> <C-W>l
 " }}}
 
+set runtimepath+=/home/adem/Desktop/helloworld
 " plugins {{{
 call plug#begin('~/.vim/plugged')
 
 Plug 'Shougo/neoinclude.vim'
 Plug 'jsfaint/coc-neoinclude'
-Plug 'neoclide/coc.nvim', {'for':['c', 'cpp', 'd', 'go', 'python', 'dart'], 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'for':['cmake', 'c', 'cpp', 'd', 'go', 'python', 'dart'], 'do': { -> coc#util#install()}}
 
 Plug 'Shougo/neosnippet.vim'
 Plug 'p1v0t/neosnippet-snippets'
