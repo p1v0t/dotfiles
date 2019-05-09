@@ -14,26 +14,19 @@ setlocal autoindent
 setlocal smarttab
 setlocal makeprg=make
 
-fun! CompileWithGCC()
-	let compiler = 'g++'
-	let standard = '-std=c++17'
-	let defaultFlags = ['-fsyntax-only', '-Wshadow',
-				\ '-Wpedantic', '-Woverloaded-virtual',
-				\ '-Wdeprecated', '-Wconversion', '-Wold-style-cast',
-				\'-Wnon-virtual-dtor', '-std=c++17']
-	" noncomplete
-endf
-
 nnoremap <silent> <F5> :w <bar> !clear && g++
-	\ -fsyntax-only
+"	\ -fsyntax-only
+    \ -Wall
+    \ -Wextra
 	\ -Wshadow
 	\ -Wpedantic 
+	\ -fconcepts
 	\ -Woverloaded-virtual 
 	\ -Wdeprecated
 	\ -Wconversion 
 	\ -Wold-style-cast
 	\ -Wnon-virtual-dtor
-	\ -std=c++17  % <CR>
+	\ -std=gnu++2a % && ./a.out <CR>
 
 nnoremap <silent> <F6> :w <bar> !clear && clang++
 	\ -stdlib=libc++
@@ -57,15 +50,6 @@ nnoremap <silent> <F6> :w <bar> !clear && clang++
 "		\   }
 "		\ }
 "\})
-
-"function! cmakebuild()
-"	let buildpath = ["build", "Build"]
-"	let srcPath = ["."]
-"	echom "build began"
-"	system("cmake -Bbuildpaths[0] -S  srcPath[0]")
-"	system ("cmake --build buildpath[0]")
-"endfunction
-
 
 let g:clang_include_fixer_path='/usr/bin/clang-include-fixer-7'
 let g:clang_include_fixer_maximum_suggested_headers=5
