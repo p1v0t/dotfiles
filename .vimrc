@@ -20,7 +20,7 @@ nnoremap <silent> <leader>fs :!source ~/.config/fish/config.fish <CR>
 noremap <leader>nn :NERDTreeToggle<cr>
 noremap cf <Plug>(operator-clang-format)
 
-nnoremap - :
+nnoremap ; :
 
 noremap <Up> <nop>
 noremap <Down> <nop>
@@ -44,7 +44,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'Shougo/neoinclude.vim'
 Plug 'jsfaint/coc-neoinclude'
-Plug 'neoclide/coc.nvim', {'for':['cmake', 'c', 'cpp', 'd', 'go', 'python', 'dart'], 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'for':['sh','yaml', 'cmake', 'c', 'cpp', 'd', 'go', 'python', 'dart'], 'do': { -> coc#util#install()}}
 
 Plug 'Shougo/neosnippet.vim'
 Plug 'p1v0t/neosnippet-snippets'
@@ -59,6 +59,7 @@ Plug 'https://github.com/tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree',{'frozen': 1}
 Plug 'itchyny/lightline.vim',{'frozen': 1}
 Plug 'dracula/vim',{'frozen': 1}
+Plug 'https://github.com/NLKNguyen/papercolor-theme'
 
 Plug 'mileszs/ack.vim'
 Plug 'rhysd/vim-clang-format', {'for' : ['c', 'cpp']}
@@ -121,7 +122,7 @@ endfunction
 " Highlight symbol under cursor on CursorHold
 " autocmd CursorHold * silent call CocActionAsync('highlight')
 
-nnoremap rn <Plug>(coc-rename)
+vnoremap <F2> <Plug>(coc-rename)
 
 " Remap for format selected region
 vmap <leader>f  <Plug>(coc-format-selected)
@@ -153,7 +154,7 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " Add diagnostic info for https://github.com/itchyny/lightline.vim
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \'colorscheme': 'PaperColor',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
@@ -201,6 +202,8 @@ let g:ackprg = 'ag --vimgrep'
 
 " variables {{{
 set tabstop=4
+set hlsearch
+set incsearch
 set hidden
 set nobackup
 set nowritebackup
@@ -244,4 +247,6 @@ set laststatus=2
 
 let g:go_def_mode='gopls'
 
-colorscheme dracula
+"colorscheme dracula
+set background=dark
+colorscheme PaperColor
