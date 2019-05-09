@@ -6,6 +6,9 @@ set PATH $PATH $HOME/appimages
 set PATH $PATH /usr/local/go/bin
 set PATH $PATH /home/adem/go/bin
 
+export CC=/usr/bin/gcc
+export CXX=/usr/bin/g++
+
 alias nvim='nvim.appimage'
 
 alias ..='cd ..'
