@@ -53,9 +53,8 @@
 	},
 
      "golang": {
-      "command": "bingo",
-      "args": ["--diagnostics-style=instant"],
-      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/","WORKSPACE"],
       "filetypes": ["go"]
     },
 
@@ -71,7 +70,12 @@
           "completion": {}
         }
       }
-    }
+    },
 
+    "python": {
+      "command": "pyls",
+      "filetypes": ["py"],
+      "rootPatterns": [".git/","WORKSPACE"]
+    }
   }
 }
