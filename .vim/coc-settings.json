@@ -28,7 +28,7 @@
 	"help"
 ],
 
-"coc.preferences.jumpCommand": "vsplit",
+"coc.preferences.jumpCommand": "tab drop",
 
 "coc.preferences.snippets.enable": true,
 
@@ -53,7 +53,8 @@
 	},
 
      "golang": {
-      "command": "gopls",
+      "command": "go-langserver",
+	  "args": ["-diagnostics", "-gocodecompletion", "-lint-tool=golint","maxparallelism=8"],
       "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/","WORKSPACE"],
       "filetypes": ["go"]
     },
@@ -76,6 +77,20 @@
       "command": "pyls",
       "filetypes": ["py"],
       "rootPatterns": [".git/","WORKSPACE"]
+    },
+
+    "cmake": {
+      "command": "cmake",
+	  "args": ["-E", "server","--experimental"],
+      "filetypes": ["cmake"],
+      "rootPatterns": [".git/","WORKSPACE"]
+    },
+
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh"],
+      "ignoredRootPaths": ["~"]
     }
   }
 }
