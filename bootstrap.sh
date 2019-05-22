@@ -12,6 +12,7 @@ sudo apt-get install yadm
 yadm clone https://github.com/p1v0t/dotfiles.git
 
 sudo apt-get install curl
+sudo apt-get install wget
 sudo apt-get install keepassx
 
 sudo apt-get install build-essential
@@ -23,6 +24,13 @@ rm get-pip.py
 
 sudo pip install cmake
 
+# Get nvim nightly build app image
+mkdir ~/appimages
+wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage -O appimages/nvim
+chmod u+x appimages/nvim
+echo "export PATH="$PATH:$HOME/appimages" >> .bashrc
+
+# vim from source 
 curl -R -O http://www.lua.org/ftp/lua-5.3.5.tar.gz
 tar zxf lua-5.3.5.tar.gz
 cd lua-5.3.5
@@ -39,7 +47,6 @@ sudo ./configure --enable-fail-if-missing \
 --disable-smack \
 --disable-selinux \
 --enable-luainterp=yes \
---with-python3-command=python3interp \
 --enable-python3interp=yes \
 --with-python3-config-dir=/usr/lib/python3.5/config-3.5m-x86_64-linux-gnu \
 --enable-cscope \
@@ -63,5 +70,6 @@ sudo ./configure --enable-fail-if-missing \
 sudo make -j 8
 sudo make install
 
+# wim plug
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
