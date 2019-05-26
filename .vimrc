@@ -44,13 +44,16 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'Shougo/neoinclude.vim'
 Plug 'jsfaint/coc-neoinclude'
-Plug 'neoclide/coc.nvim', {'for':['sh','yaml', 'cmake', 'c', 'cpp', 'd', 'go', 'python', 'dart'], 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'for':['ts','sh','yaml', 'cmake', 'c', 'cpp', 'd', 'go', 'python', 'dart'], 'do': { -> coc#util#install()}}
+
+Plug 'tweekmonster/gofmt.vim', { 'for': 'go'}
 
 Plug 'Shougo/neosnippet.vim'
 Plug 'p1v0t/neosnippet-snippets'
 
-Plug 'https://github.com/w0rp/ale'
-Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries' }
+
+" Plug 'https://github.com/w0rp/ale'
+" Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries' }
 
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
@@ -59,7 +62,8 @@ Plug 'https://github.com/tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree',{'frozen': 1}
 Plug 'itchyny/lightline.vim',{'frozen': 1}
 Plug 'dracula/vim',{'frozen': 1}
-Plug 'https://github.com/NLKNguyen/papercolor-theme'
+Plug 'https://github.com/NLKNguyen/papercolor-theme',{'frozen': 1}
+
 
 Plug 'mileszs/ack.vim'
 Plug 'rhysd/vim-clang-format', {'for' : ['c', 'cpp']}
@@ -196,10 +200,25 @@ let g:airline_theme='dracula'
 
 " }}}
 
+" ale {{{
+let g:ale_cpp_gcc_options='-std=c++2a -Wpedantic -Wall -Wextra -fconcepts'
+let ale_c_build_dir='build'
+let g:ale_c_build_dir_names=['build', 'bin']
+let g:ale_cpp_cpplint_options='quite'
+" }}}
+
+
 " ack {{{
 let g:ackprg = 'ag --vimgrep'
 " }}}
 
+" neosnippets {{{ 
+
+let g:neosnippet#snippets_directory="/home/adem/.vim/plugged/neosnippet-snippets/neosnippets"
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+" }}}
 " variables {{{
 set tabstop=4
 set hlsearch
@@ -243,9 +262,8 @@ set spelllang=en_US
 set fileformat=unix
 set autoread
 set laststatus=2
+set termwinsize=10*0
 " }}}
-
-let g:go_def_mode='gopls'
 
 "colorscheme dracula
 set background=dark
