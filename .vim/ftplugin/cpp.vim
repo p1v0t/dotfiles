@@ -39,17 +39,6 @@ nnoremap <silent> <F6> :w <bar> !clear && clang++
 	\ -Wnon-virtual-dtor
 	\ -std=c++17 -O2 %  && ./a.out <CR>
 
-"call coc#config('coc.preferences', {
-"		\ 'timeout': 1000,
-"		\ 'hoverTarget': 'echo',
-"		\ 'languageserver': {
-"		\   'ccls': {
-"		\     "command": "ccls",
-"      		\     "trace.server": "verbose",
-"      		\     "filetypes": ["c", "cpp", "objc", "objcpp"]
-"		\   }
-"		\ }
-"\})
 
 let g:clang_include_fixer_path='/usr/bin/clang-include-fixer-7'
 let g:clang_include_fixer_maximum_suggested_headers=5
@@ -60,7 +49,7 @@ noremap <leader>ff :py3f /usr/bin/clang-include-fixer.py<cr>
 
 " vim-clang-format {{{
 let g:clang_format#command='clang-format'
-let g:clang_format#code_style='chromium'
+let g:clang_format#code_style='llvm'
 let g:clang_format#detect_style_file=1
 let g:clang_format#auto_format=1 
 " }}}
