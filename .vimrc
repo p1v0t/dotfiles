@@ -51,10 +51,6 @@ Plug 'tweekmonster/gofmt.vim', { 'for': 'go'}
 Plug 'Shougo/neosnippet.vim'
 Plug 'p1v0t/neosnippet-snippets'
 
-
-" Plug 'https://github.com/w0rp/ale'
-" Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries' }
-
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 Plug 'https://github.com/tpope/vim-fugitive'
@@ -63,7 +59,6 @@ Plug 'scrooloose/nerdtree',{'frozen': 1}
 Plug 'itchyny/lightline.vim',{'frozen': 1}
 Plug 'dracula/vim',{'frozen': 1}
 Plug 'https://github.com/NLKNguyen/papercolor-theme',{'frozen': 1}
-
 
 Plug 'mileszs/ack.vim'
 Plug 'rhysd/vim-clang-format', {'for' : ['c', 'cpp']}
@@ -126,7 +121,7 @@ endfunction
 " Highlight symbol under cursor on CursorHold
 " autocmd CursorHold * silent call CocActionAsync('highlight')
 
-vnoremap <F2> <Plug>(coc-rename)
+vnoremap rn <Plug>(coc-rename)
 
 " Remap for format selected region
 vmap <leader>f  <Plug>(coc-format-selected)
@@ -265,6 +260,5 @@ set laststatus=2
 set termwinsize=10*0
 " }}}
 
-"colorscheme dracula
 set background=dark
 colorscheme PaperColor

@@ -4,6 +4,7 @@
 [core]
 	editor = vim
 	filemod = false
+	autocrlf = input
 [user]
 	email = adembudak@outlook.com
 	name = Adem Budak
