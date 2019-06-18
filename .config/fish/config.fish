@@ -6,16 +6,20 @@ set PATH $PATH $HOME/appimages
 set PATH $PATH /usr/local/go/bin
 set PATH $PATH /home/adem/go/bin
 
-export CC=/usr/bin/gcc
-export CXX=/usr/bin/g++
+set GOPATH /home/adem/go /home/adem/Desktop/letsGo $GOPATH
+
+export CC=/usr/local/bin/gcc
+export CXX=/usr/local/bin/g++
 
 alias nvim='nvim.appimage'
+alias wq='exit'
 
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
 alias cp='cp -r'
+alias vi='vim'
 
 function ls
     command ls --color=auto $argv
