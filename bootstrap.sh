@@ -1,6 +1,7 @@
+#!/bin/bash
 
 su 
-apt-get sudo 
+apt-get install sudo 
 
 exit
 
@@ -70,6 +71,18 @@ sudo ./configure --enable-fail-if-missing \
 sudo make -j 8
 sudo make install
 
-# wim plug
+# vim-plug
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+# swith to fish
+echo 'deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_9.0/ /' > /etc/apt/sources.list.d/shells:fish:release:3.list
+sudo apt-get update
+sudo apt-get install fish
+
+wget -nv https://download.opensuse.org/repositories/shells:fish:release:3/Debian_9.0/Release.key -O Release.key
+sudo apt-key add - < Release.key
+sudo apt-get update
+
+echo /usr/local/bin/fish | sudo tee -a /etc/shells
+chsh -s /usr/local/bin/fish
