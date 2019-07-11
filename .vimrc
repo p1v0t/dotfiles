@@ -121,7 +121,7 @@ endfunction
 " Highlight symbol under cursor on CursorHold
 " autocmd CursorHold * silent call CocActionAsync('highlight')
 
-vnoremap rn <Plug>(coc-rename)
+map rn <Plug>(coc-rename)
 
 " Remap for format selected region
 vmap <leader>f  <Plug>(coc-format-selected)
@@ -227,7 +227,7 @@ set signcolumn=yes
 set shiftwidth=4
 set smarttab
 set expandtab
-set number
+set nonumber
 set ttyfast
 set showcmd
 set cmdheight=1
