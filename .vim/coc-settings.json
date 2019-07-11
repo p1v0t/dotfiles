@@ -8,7 +8,7 @@
 "suggest.acceptSuggestionOnCommitCharacter": true,
 "suggest.disableMenu": true,
 "suggest.maxCompleteItemCount": 100,
-"suggest.detailMaxLength": 120,
+"suggest.detailMaxLength": 220,
 
 "diagnostic.enable": true,
 "diagnostic.refreshOnInsertMode": true,
@@ -63,16 +63,12 @@
 
  "languageserver": {
 
-	"ccls": {
-      "command": "ccls",
-      "filetypes": ["c", "cpp", "objc", "objcpp"],
-      "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/", "WORKSPACE"],
-      "initializationOptions": {
-         "cache": {
-           "directory": "/tmp/ccls"
-         }
-       }
-    },
+	"clangd" : {
+		"command":"clangd",
+		"filetypes": ["c", "cpp"],
+		"rootPatterns": ["compile_commands.json", "WORKSPACE",".git"],
+		"args": ["-color","-all-scopes-completion=true","-bounds-checking-single-trap", "-compile-commands-dir=build", "-completion-style=detailed", "-input-style=standard","-j=4", "-limit-results=0","-pch-storage=memory"]
+	},
 
     "serve-d": {
         "command": "serve-d",
