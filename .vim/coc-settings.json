@@ -63,11 +63,11 @@
 
  "languageserver": {
 
-	"clangd" : {
-		"command":"clangd",
+	"ccls" : {
+		"command":"ccls",
 		"filetypes": ["c", "cpp"],
 		"rootPatterns": ["compile_commands.json", "WORKSPACE",".git"],
-		"args": ["-color","-all-scopes-completion=true","-bounds-checking-single-trap", "-compile-commands-dir=build", "-completion-style=detailed", "-input-style=standard","-j=4", "-limit-results=0","-pch-storage=memory"]
+		"args": ["-v=0"]
 	},
 
     "serve-d": {
@@ -103,18 +103,30 @@
       "rootPatterns": [".git/","WORKSPACE"]
     },
 
-    "cmake": {
-      "command": "cmake",
-	  "args": ["-E", "server","--experimental"],
-      "filetypes": ["cmake"],
-      "rootPatterns": [".git/","WORKSPACE"]
-    },
 
     "bash": {
       "command": "bash-language-server",
       "args": ["start"],
       "filetypes": ["sh"],
       "ignoredRootPaths": ["~"]
-    }
-  }
+    },
+
+	"haskell": {
+		"command": "hie-wrapper",
+		"rootPatterns": [
+		  ".stack.yaml",
+		  "cabal.config",
+		  "package.yaml"
+		],
+		"filetypes": [
+		  "hs",
+		  "lhs",
+		  "haskell"
+		],
+		"initializationOptions": {
+		  "languageServerHaskell": { }
+        }
+	}
+
+ }
 }
