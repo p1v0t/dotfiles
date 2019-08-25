@@ -1,6 +1,6 @@
 #!/bin/bash
 
-su 
+su -c
 apt-get install sudo 
 
 exit
@@ -8,46 +8,20 @@ exit
 sudo apt-get update 
 sudo apt-get upgrade
 
-sudo apt-get install git
-sudo apt-get install yadm
+sudo apt-get install build-essential git yadm curl wget keepassx ninja-build cmake libpython-dev libpython3-dev
 yadm clone https://github.com/p1v0t/dotfiles.git
-
-sudo apt-get install curl
-sudo apt-get install wget
-sudo apt-get install keepassx
-
-sudo apt-get install build-essential
-sudo apt-get install ninja-build ninja-build-doc
 
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 sudo python get-pip.py
 rm get-pip.py
 
-sudo pip install cmake
 
-# Get nvim nightly build app image
-mkdir ~/appimages
-wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage -O appimages/nvim
-chmod u+x appimages/nvim
-echo "export PATH="$PATH:$HOME/appimages" >> .bashrc
-
-# vim from source 
-curl -R -O http://www.lua.org/ftp/lua-5.3.5.tar.gz
-tar zxf lua-5.3.5.tar.gz
-cd lua-5.3.5
-sudo make linux 
-sudo make install 
-
-sudo apt-get install libpython-dev libpython3-dev
-
-git clone --depth=1 https://github.com/vim/vim.git
-cd vim
+git clone --depth=1 https://github.com/vim/vim.git; cd vim
 
 sudo ./configure --enable-fail-if-missing \
 --disable-darwin \
 --disable-smack \
 --disable-selinux \
---enable-luainterp=yes \
 --enable-python3interp=yes \
 --with-python3-config-dir=/usr/lib/python3.5/config-3.5m-x86_64-linux-gnu \
 --enable-cscope \
@@ -72,7 +46,7 @@ sudo make -j 8
 sudo make install
 
 # vim-plug
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # swith to fish
