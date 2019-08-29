@@ -12,13 +12,7 @@ let mapleader = ' '
 
 " mapping {{{
 nnoremap <silent>ve :vsplit ~/.vimrc<CR>
-nnoremap <silent>vs :w <bar> source ~/.vimrc<CR>
-
-nnoremap <silent> <leader>fe :vsplit ~/.config/fish/config.fish <CR>
-nnoremap <silent> <leader>fs :!source ~/.config/fish/config.fish <CR>
-
 noremap <leader>nn :NERDTreeToggle<cr>
-noremap cf <Plug>(operator-clang-format)
 
 nnoremap ; :
 
@@ -38,22 +32,21 @@ noremap <C-h> <C-W>h
 noremap <C-l> <C-W>l
 " }}}
 
-set runtimepath+=/home/adem/Desktop/helloworld
 " plugins {{{
 call plug#begin('~/.vim/plugged')
 
 Plug 'Shougo/neoinclude.vim'
 Plug 'jsfaint/coc-neoinclude'
-Plug 'neoclide/coc.nvim', {'for':['ts','sh','yaml', 'cmake', 'c', 'cpp', 'd', 'go', 'python', 'dart'], 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'for':['json', 'haskell', 'ts','sh','yaml', 'cmake', 'c', 'cpp', 'd', 'go', 'python', 'dart'], 'do': { -> coc#util#install()}}
 
 Plug 'tweekmonster/gofmt.vim', { 'for': 'go'}
-
-Plug 'Shougo/neosnippet.vim'
-Plug 'p1v0t/neosnippet-snippets'
 
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 Plug 'https://github.com/tpope/vim-fugitive'
+
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 
 Plug 'scrooloose/nerdtree',{'frozen': 1}
 Plug 'itchyny/lightline.vim',{'frozen': 1}
@@ -70,19 +63,25 @@ call plug#end()
 
 " pluginsVariables {{{
 
-" neosnippet-snippets
-
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" }}}
-
-" coc-settings {{{
+"coc-settings {{{
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
+
+"inoremap <silent><expr> <TAB>
+"	  \ pumvisible() ? coc#_select_confirm() :
+"	  \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+"	  \ <SID>check_back_space() ? "\<TAB>" :
+"	  \ coc#refresh()
+"	
+"function! s:check_back_space() abort
+"  let col = col('.') - 1
+"  return !col || getline('.')[col - 1]  =~# '\s'
+"endfunction
+	
+"let g:coc_snippet_next = '<tab>'
+
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
@@ -207,13 +206,6 @@ let g:ale_cpp_cpplint_options='quite'
 let g:ackprg = 'ag --vimgrep'
 " }}}
 
-" neosnippets {{{ 
-
-let g:neosnippet#snippets_directory="/home/adem/.vim/plugged/neosnippet-snippets/neosnippets"
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-" }}}
 " variables {{{
 set tabstop=4
 set hlsearch

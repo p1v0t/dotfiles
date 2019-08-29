@@ -2,7 +2,8 @@
 
 alias vi='vim'
 
-alias ll='ls -al --color=auto'
+alias ls='ls --color=auto'
+alias ll='ls -Al --color=auto'
 alias la='ls -A --color=auto'
 alias l='ls -CF --color=auto'
 

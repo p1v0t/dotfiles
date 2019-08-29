@@ -2,16 +2,18 @@ set -U EDITOR vim
 set -U GIT_EDITOR vim
 
 set PATH $PATH $HOME/clion-2018.3.4/bin
-set PATH $PATH $HOME/appimages
+set PATH $PATH $HOME/Appimages
 set PATH $PATH /usr/local/go/bin
 set PATH $PATH /home/adem/go/bin
 
 set GOPATH /home/adem/go /home/adem/Desktop/letsGo $GOPATH
+set VCPKG_ROOT /home/adem/Desktop/post/vcpkg
+set HUNTER_ROOT /home/adem/.hunter
 
 export CC=/usr/local/bin/gcc
 export CXX=/usr/local/bin/g++
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-alias nvim='nvim.appimage'
 alias wq='exit'
 
 alias ..='cd ..'
@@ -26,8 +28,9 @@ function ls
 end
 
 alias l=ls
+
 function ll
-    command ls --all --color=auto $argv
+    command ls -A --color=auto $argv
 end
 
 function h --description "home sweet home"
@@ -73,4 +76,3 @@ end
 
 set fish_greeting 
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

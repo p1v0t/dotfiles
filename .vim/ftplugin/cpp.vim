@@ -28,18 +28,6 @@ nnoremap <silent> <F5> :w <bar> !clear && g++
 	\ -Wnon-virtual-dtor
 	\ -std=gnu++2a % && ./a.out <CR>
 
-nnoremap <silent> <F6> :w <bar> !clear && clang++
-	\ -stdlib=libc++
-	\ -Wshadow
-	\ -Wpedantic 
-	\ -Woverloaded-virtual 
-	\ -Wdeprecated
-	\ -Wconversion 
-	\ -Wold-style-cast
-	\ -Wnon-virtual-dtor
-	\ -std=c++17 -O2 %  && ./a.out <CR>
-
-
 let g:clang_include_fixer_path='/usr/bin/clang-include-fixer-7'
 let g:clang_include_fixer_maximum_suggested_headers=5
 let g:clang_include_fixer_increment_num=5
