@@ -5,7 +5,7 @@ function extract --description "extract the archive files"
     for file in $argv
 	  if test -e $file
 	    switch $file
-	      case "*.cbt" "*.tar.bz2" "*.tar.gz" "*.tar.xz" "*.tbz2" "*.tgz" "*.txz" "*.tar" 
+	      case "*.cbt" "*.tar.bz2" "*.gz" "*.tar.gz" "*.tar.xz" "*.tbz2" "*.tgz" "*.txz" "*.tar" 
 		    tar xvf $file
 		  case "*.lzma"
 		    unlzma $file
