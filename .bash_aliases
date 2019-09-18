@@ -40,3 +40,4 @@ alias update="sudo apt-get update"
 alias upgrade="sudo apt-get upgrade"
 alias uu="update && upgrade"
 alias grep='grep --color'
+alias wq='exit'
