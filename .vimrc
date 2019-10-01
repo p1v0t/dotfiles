@@ -11,10 +11,22 @@ filetype plugin indent on
 let mapleader = ' '
 
 " mapping {{{
-nnoremap <silent>ve :vsplit ~/.vimrc<CR>
-noremap <leader>nn :NERDTreeToggle<cr>
-
 nnoremap ; :
+
+nnoremap <silent>ve :vsplit ~/.vimrc<enter>
+noremap <silent><leader>n :NERDTreeToggle<enter>
+
+nmap <F5> :SCCompileRun -std=c++17 <enter>
+nmap <F6> :SCCompile<enter>
+let g:SingleCompile_showquickfixiferror = 1
+
+let g:goyo_width = 80
+let g:goyo_height = 100
+let g:goyo_linenr = 0
+nnoremap <silent><C-f> :Goyo<enter>
+
+nmap <silent><Leader>l :Limelight!! 0.7<enter>
+xmap <silent><Leader>l :Limelight!! 0.7<enter>
 
 noremap <Up> <nop>
 noremap <Down> <nop>
@@ -37,50 +49,64 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'Shougo/neoinclude.vim'
 Plug 'jsfaint/coc-neoinclude'
-Plug 'neoclide/coc.nvim', {'for':['json', 'haskell', 'ts','sh','yaml', 'cmake', 'c', 'cpp', 'd', 'go', 'python', 'dart'], 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'for':['zig','cmake','rust',
+			\'java','json', 'haskell', 'ts','sh',
+			\'yaml', 'c', 'cpp', 'd', 'go',
+			\'python', 'dart'], 'do': { -> coc#util#install()}}
 
-Plug 'tweekmonster/gofmt.vim', { 'for': 'go'}
-
+Plug 'rust-lang/rust.vim', {'for' : ['rust']}
+Plug 'ziglang/zig.vim', {'for' : ['zig']}
+Plug 'dense-analysis/ale', {'for' : ['sh', 'vim']}
 Plug 'tpope/vim-surround'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'tpope/vim-eunuch'
-Plug 'https://github.com/tpope/vim-fugitive'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-fugitive'
+
+Plug 'vim-scripts/SingleCompile'
 
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 
-Plug 'scrooloose/nerdtree',{'frozen': 1}
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
 Plug 'itchyny/lightline.vim',{'frozen': 1}
 Plug 'dracula/vim',{'frozen': 1}
-Plug 'https://github.com/NLKNguyen/papercolor-theme',{'frozen': 1}
+Plug 'NLKNguyen/papercolor-theme',{'frozen': 1}
 
 Plug 'mileszs/ack.vim'
 Plug 'rhysd/vim-clang-format', {'for' : ['c', 'cpp']}
-
-Plug 'google/vim-maktaba', {'for' : ['c', 'cpp']}
-Plug 'bazelbuild/vim-bazel', {'for' : ['c', 'cpp']}
-
 call plug#end()
 
 " pluginsVariables {{{
 
+"nerdtree-git-plugin {{{
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+"}}}
+
 "coc-settings {{{
+
+inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<TAB>"
+let g:coc_snippet_next = '<TAB>'
+let g:coc_snippet_prev = '<S-TAB>'
+
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 
-"inoremap <silent><expr> <TAB>
-"	  \ pumvisible() ? coc#_select_confirm() :
-"	  \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-"	  \ <SID>check_back_space() ? "\<TAB>" :
-"	  \ coc#refresh()
-"	
-"function! s:check_back_space() abort
-"  let col = col('.') - 1
-"  return !col || getline('.')[col - 1]  =~# '\s'
-"endfunction
-	
-"let g:coc_snippet_next = '<tab>'
 
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
@@ -89,24 +115,16 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <c-space> for trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" Use `[c` and `]c` for navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
-" Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Use K for show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
@@ -117,9 +135,6 @@ function! s:show_documentation()
   endif
 endfunction
 
-" Highlight symbol under cursor on CursorHold
-" autocmd CursorHold * silent call CocActionAsync('highlight')
-
 map rn <Plug>(coc-rename)
 
 " Remap for format selected region
@@ -128,19 +143,14 @@ nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
-  " Setup formatexpr specified filetype(s).
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
 vmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
-" Remap for do codeAction of current line
 nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Use `:Format` for format current buffer
@@ -149,8 +159,6 @@ command! -nargs=0 Format :call CocAction('format')
 " Use `:Fold` for fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
-
-" Add diagnostic info for https://github.com/itchyny/lightline.vim
 let g:lightline = {
       \'colorscheme': 'PaperColor',
       \ 'active': {
@@ -162,22 +170,13 @@ let g:lightline = {
       \ },
       \ }
 
-" Using CocList
-" Show all diagnostics
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
 nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
 nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
 nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
 nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " }}}
 
@@ -190,8 +189,7 @@ let g:NERDMinimalMenu=1
 
 " airline {{{
 let g:airline_theme='dracula'
-"let g:airline_exclude_filetypes = []
-
+let g:airline_exclude_filetypes = ['md']
 " }}}
 
 " ale {{{
@@ -207,7 +205,11 @@ let g:ackprg = 'ag --vimgrep'
 " }}}
 
 " variables {{{
-set tabstop=4
+set tabstop=8
+set softtabstop=8
+set shiftwidth=8
+set noexpandtab
+
 set hlsearch
 set incsearch
 set hidden
@@ -216,9 +218,7 @@ set nowritebackup
 set updatetime=300
 set shortmess+=c 
 set signcolumn=yes
-set shiftwidth=4
 set smarttab
-set expandtab
 set nonumber
 set ttyfast
 set showcmd
@@ -248,6 +248,7 @@ set mousehide
 set spelllang=en_US
 set fileformat=unix
 set autoread
+set autowrite
 set laststatus=2
 set termwinsize=10*0
 " }}}
