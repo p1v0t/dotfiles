@@ -6,7 +6,7 @@
 	filemod = false
 	autocrlf = input
 [user]
-	email = adembudak@outlook.com
+	email = admbudk@gmail.com
 	name = Adem Budak
 
 [apply]
@@ -33,14 +33,17 @@
 [alias]
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
-	l = log --pretty=oneline -n 20 --graph --abbrev-commit
+	# l = log --pretty=oneline -n 20 --graph --abbrev-commit
+	l = log --all --graph --oneline --abbrev-commit --decorate
 
 	st = status
 	tags = tag -l
 	branches = branch -a
-	remotes =_ remote -v
+	remotes = remote -v
+	diff = diff --word-diff
 
 	c = clone --recursive 
+	co = checkout
 	uncommit = reset --soft HEAD^
 	delcommit = --amend
 
@@ -56,3 +59,11 @@
 	helper = cache
 	heper = cache --timeout=3600
 
+[sendemail]
+	from = admbudk@gmail.com
+	confirm = always
+
+	smtpEncryption = tls
+	smtpServer = smtp.gmail.com
+	smtpUser = admbudk@gmail.com
+	smtpServerPort = 587
