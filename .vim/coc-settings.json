@@ -45,7 +45,7 @@
 		"text": "✎",
 		"enum": "🅔",
 		"enumMember": "ⓔ",
-		"module": "\uf40d",
+		"module": "𝙈",
 		"color": "\ue22b",
 		"property": "\ue624",
 		"field": "\uf9be",
@@ -105,13 +105,11 @@
 		"rootPatterns":[".vim", ".git", "WORKSPACE"]
 	},
 
-     "golang": {
-      "command": "go-langserver",
-	  "args": ["-diagnostics", "-gocodecompletion", "-lint-tool=golint","maxparallelism=8"],
-      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/","WORKSPACE"],
-      "filetypes": ["go"]
-    },
-
+		      "golang": {
+			            "command": "gopls",
+				          "rootPatterns": ["go.mod"],
+					        "filetypes": ["go"]
+						    },
     "dart": {
       "command": "dart_language_server",
 	  "detached": false,
