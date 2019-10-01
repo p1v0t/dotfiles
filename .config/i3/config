@@ -1,6 +1,6 @@
 set $mod Mod1
 
-font Cascadia Code Regular 8
+font pango:Cascadia Code Regular 8
 
 floating_modifier $mod
 
@@ -35,13 +35,11 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+h split h
 bindsym $mod+v split v
 
-# to enter fullscreen mode
 bindsym $mod+f fullscreen toggle
 
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+e layout toggle split # split, vertical-horizontal
+bindsym $mod+s layout stacking # focus on current window
+bindsym $mod+w layout tabbed # almost same as above
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -94,8 +92,10 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
+
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
@@ -131,8 +131,8 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #i
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec "light -A 5; notify-send 'brightness up'"; 
+bindsym XF86MonBrightnessDown exec "light -U 5; notify-send 'brightness down'";
 
 
 # Touchpad controls
