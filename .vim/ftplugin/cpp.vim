@@ -1,44 +1,29 @@
-setlocal autoread
-setlocal autowrite
-setlocal background=dark
-setlocal backspace=indent,eol,start
-setlocal writebackup
-
-setlocal belloff=all
-"setlocal cmdheight=2
-"setlocal tabstop=4
-"setlocal shiftwidth=4
-setlocal nocindent
-setlocal expandtab
-setlocal autoindent
-setlocal smarttab
-setlocal makeprg=make
-
-nnoremap <silent> <F5> :w <bar> !clear && g++
-"	\ -fsyntax-only
-    \ -Wall
-    \ -Wextra
-	\ -Wshadow
-	\ -Wpedantic 
-	\ -fconcepts
-	\ -Woverloaded-virtual 
-	\ -Wdeprecated
-	\ -Wconversion 
-	\ -Wold-style-cast
-	\ -Wnon-virtual-dtor
-	\ -std=gnu++2a % && ./a.out <CR>
-
-let g:clang_include_fixer_path='/usr/bin/clang-include-fixer-7'
-let g:clang_include_fixer_maximum_suggested_headers=5
-let g:clang_include_fixer_increment_num=5
-let g:clang_include_fixer_jump_to_include=0
-let g:clang_include_fixer_query_mode=0
-noremap <leader>ff :py3f /usr/bin/clang-include-fixer.py<cr>
-
 " vim-clang-format {{{
 let g:clang_format#command='clang-format'
 let g:clang_format#code_style='llvm'
 let g:clang_format#detect_style_file=1
 let g:clang_format#auto_format=1 
 " }}}
+
+" ALE {{{
+let g:ale_cpp_clang_executable='clang++'
+let g:ale_cpp_clangd_executable='clangd'
+let g:ale_cpp_clangcheck_executable='clang-check'
+let g:ale_cpp_clangtidy_executable='clang-tidy'
+let g:ale_cpp_clangtidy_checks=["-checks", "-*", "bugprone-*"]
+
+let g:ale_cpp_gcc_executable='g++-9'
+let g:ale_cpp_gcc_options='-std=c++2a'
+" }}}
+
+
+" clang-include-fixer {{{
+let g:clang_include_fixer_path = "clang-include-fixer"
+let g:clang_include_fixer_maximum_suggested_headers = 3
+let g:clang_include_fixer_increment_num = 5
+let g:clang_include_fixer_jump_to_include = 0
+let g:clang_include_fixer_query_mode = 0
+noremap <leader>cf :pyf /home/adem/Desktop/projects/llvm-project/clang-tools-extra/clang-include-fixer/tool/clang-include-fixer.py<enter>
+" }}}
+
 
