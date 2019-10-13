@@ -2,6 +2,7 @@ export EDITOR=/usr/local/bin/vim
 
 PS1='\$ ' # Don't show anything on prompt other than '$' sign
 
+bind -x '"\C-l": clear'
 shopt -s histappend
 HISTFILE=~/.history
 HISTCONTROL=ignoreboth
