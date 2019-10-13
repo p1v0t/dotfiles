@@ -13,14 +13,14 @@ let mapleader = ' '
 " mapping {{{
 nnoremap ; :
 
-nnoremap <silent>ve :vsplit ~/.vimrc<enter>
-noremap <silent><leader>n :NERDTreeToggle<enter>
+nnoremap <silent>ve :edit $MYVIMRC<enter>
+nnoremap <silent><leader>n :NERDTreeToggle<enter>
 
 nmap <F5> :SCCompileRun -std=c++17 <enter>
 nmap <F6> :SCCompile<enter>
 let g:SingleCompile_showquickfixiferror = 1
 
-let g:goyo_width = 80
+let g:goyo_width = 90
 let g:goyo_height = 100
 let g:goyo_linenr = 0
 nnoremap <silent><C-f> :Goyo<enter>
@@ -52,13 +52,13 @@ Plug 'jsfaint/coc-neoinclude'
 Plug 'neoclide/coc.nvim', {'for':['zig','cmake','rust',
 			\'java','json', 'haskell', 'ts','sh',
 			\'yaml', 'c', 'cpp', 'd', 'go',
-			\'python', 'dart'], 'do': { -> coc#util#install()}}
+			\'python', 'dart', 'javascript'], 'do': { -> coc#util#install()}}
 
 Plug 'rust-lang/rust.vim', {'for' : ['rust']}
 Plug 'ziglang/zig.vim', {'for' : ['zig']}
-Plug 'dense-analysis/ale', {'for' : ['sh', 'vim']}
+Plug 'dense-analysis/ale', {'for' : ['sh', 'vim', 'javascript']}
 Plug 'tpope/vim-surround'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go', { 'for': ['go'], 'do': ':GoUpdateBinaries' }
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
@@ -75,8 +75,11 @@ Plug 'itchyny/lightline.vim',{'frozen': 1}
 Plug 'dracula/vim',{'frozen': 1}
 Plug 'NLKNguyen/papercolor-theme',{'frozen': 1}
 
-Plug 'mileszs/ack.vim'
+Plug 'mileszs/ack.vim',{'frozen': 1}
 Plug 'rhysd/vim-clang-format', {'for' : ['c', 'cpp']}
+
+Plug 'mattn/emmet-vim' , {'for' : ['html', 'css']}
+
 call plug#end()
 
 " pluginsVariables {{{
@@ -205,9 +208,9 @@ let g:ackprg = 'ag --vimgrep'
 " }}}
 
 " variables {{{
-set tabstop=8
-set softtabstop=8
-set shiftwidth=8
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 set noexpandtab
 
 set hlsearch
