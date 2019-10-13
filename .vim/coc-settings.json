@@ -36,7 +36,7 @@
 		"value": "⤙",
 		"operator": "∓",
 		"function": "⨍",
-		"reference": "🙴",
+		"reference": "＆",
 		"constant": "∏",
 		"method": "∈",
 		"struct": "🆂",
@@ -45,9 +45,9 @@
 		"text": "✎",
 		"enum": "🅔",
 		"enumMember": "ⓔ",
-		"module": "𝙈",
+		"module": "🅼",
 		"color": "\ue22b",
-		"property": "\ue624",
+		"property": "ₛ",
 		"field": "∊",
 		"unit": "₺",
 		"event": "🔌",
@@ -70,6 +70,16 @@
                "filetypes": ["rust", "rs"],
 		"rootPatterns": ["WORKSPACE", ".git"]
 	 },
+
+  "flow": {
+      "command": "flow",
+      "args": ["lsp"],
+      "filetypes": ["javascript", "javascriptreact"],
+      "initializationOptions": {},
+      "requireRootPattern": true,
+      "settings": {},
+      "rootPatterns": [".flowconfig"]
+      },
 
 	"clangd" : {
 		"command":"clangd",
