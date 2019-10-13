@@ -3,18 +3,28 @@ set -U GIT_EDITOR vim
 
 set PATH $PATH $HOME/clion-2018.3.4/bin
 set PATH $PATH $HOME/Appimages
-set PATH $PATH /usr/local/go/bin
-set PATH $PATH /home/adem/go/bin
+set PATH $PATH /home/adem/.config/i3
+set PATH $PATH $HOME/.cargo/bin
 
-set GOPATH /home/adem/go /home/adem/Desktop/letsGo $GOPATH
+set PATH $PATH /usr/local/go/bin
+
+set GOPATH /home/adem/Desktop/writinggocode
+set PATH $PATH /home/adem/Desktop/writinggocode/bin
+
 set VCPKG_ROOT /home/adem/Desktop/post/vcpkg
 set HUNTER_ROOT /home/adem/.hunter
 
 export CC=/usr/local/bin/gcc
 export CXX=/usr/local/bin/g++
+
+#export CXX=/usr/local/bin/clang++
+#export CC=/usr/local/bin/clang
+
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 alias wq='exit'
+alias wq='exit'
+alias google-chrome='google-chrome-stable --password-store=gnome'
 
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -22,6 +32,8 @@ alias ....='cd ../../..'
 
 alias cp='cp -r'
 alias vi='vim'
+
+alias kb='setxkbmap'
 
 function ls
     command ls --color=auto $argv
@@ -71,8 +83,5 @@ function efc -d 'edit fish configuration'
 end
 
 function sfc -d 'source fish configuration'
-   source $HOME/.config/fish/config.fish
+   command source ~/.config/fish/config.fish
 end
-
-set fish_greeting 
-
