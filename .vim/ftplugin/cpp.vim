@@ -26,4 +26,12 @@ let g:clang_include_fixer_query_mode = 0
 noremap <leader>cf :pyf /home/adem/Desktop/projects/llvm-project/clang-tools-extra/clang-include-fixer/tool/clang-include-fixer.py<enter>
 " }}}
 
+" Single compile {{{ 
+nnoremap <F5> :SCCompileRunAF -g -Wall -Wextra -std=c++2a<cr>
 
+"nmap <F6> :SCCompileRun<cr>
+let g:SingleCompile_showquickfixiferror = 1
+let g:SingleCompile_menumode = 1
+let g:SingleCompile_quickfixwindowposition = 'vertical'
+let g:SingleCompile_split = 'tabe'
+ }}}
