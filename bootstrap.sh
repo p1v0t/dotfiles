@@ -33,6 +33,7 @@ sudo ./configure --enable-fail-if-missing \
 	--disable-selinux \
 	--enable-python3interp=yes \
 	--with-python3-config-dir=/usr/lib/python3.5/config-3.5m-x86_64-linux-gnu \
+	--enable-rubyinterp=yes \
 	--enable-cscope \
 	--disable-netbeans \
 	--enable-terminal \
