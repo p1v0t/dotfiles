@@ -16,10 +16,6 @@ nnoremap ; :
 nnoremap <silent>ve :edit $MYVIMRC<enter>
 nnoremap <silent><leader>n :NERDTreeToggle<enter>
 
-nmap <F5> :SCCompileRun -std=c++17 <enter>
-nmap <F6> :SCCompile<enter>
-let g:SingleCompile_showquickfixiferror = 1
-
 let g:goyo_width = 90
 let g:goyo_height = 100
 let g:goyo_linenr = 0
@@ -64,6 +60,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 
 Plug 'vim-scripts/SingleCompile'
+Plug 'wincent/command-t'
 
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
