@@ -65,6 +65,8 @@ Plug 'wincent/command-t'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 
+Plug 'ollykel/v-vim', {'for' : ['v']}
+
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
