@@ -28,10 +28,8 @@ noremap <leader>cf :pyf /home/adem/Desktop/projects/llvm-project/clang-tools-ext
 
 " Single compile {{{ 
 nnoremap <F5> :SCCompileRunAF -g -Wall -Wextra -std=c++2a<cr>
-
-"nmap <F6> :SCCompileRun<cr>
 let g:SingleCompile_showquickfixiferror = 1
 let g:SingleCompile_menumode = 1
 let g:SingleCompile_quickfixwindowposition = 'vertical'
 let g:SingleCompile_split = 'tabe'
- }}}
+" }}}
