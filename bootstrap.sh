@@ -10,7 +10,7 @@ exit
 sudo apt-get update 
 sudo apt-get upgrade
 
-sudo apt-get install build-essential git yadm curl wget keepassx ninja-build cmake libpython-dev libpython3-dev i3
+sudo apt-get install build-essential git yadm curl wget keepassx ninja-build cmake libpython-dev libpython3-dev i3 ccache clangd 
 
 ## install pip
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
@@ -31,6 +31,7 @@ sudo ./configure --enable-fail-if-missing \
 	--disable-darwin \
 	--disable-smack \
 	--disable-selinux \
+	--enable-rubyinterp=yes \
 	--enable-python3interp=yes \
 	--with-python3-config-dir=/usr/lib/python3.5/config-3.5m-x86_64-linux-gnu \
 	--enable-rubyinterp=yes \
