@@ -14,7 +14,6 @@ let mapleader = ' '
 nnoremap ; :
 
 nnoremap <silent>ve :edit $MYVIMRC<enter>
-nnoremap <silent><leader>n :NERDTreeToggle<enter>
 
 let g:goyo_width = 90
 let g:goyo_height = 100
@@ -67,9 +66,6 @@ Plug 'junegunn/limelight.vim'
 
 Plug 'ollykel/v-vim', {'for' : ['v']}
 
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-
 Plug 'itchyny/lightline.vim',{'frozen': 1}
 Plug 'dracula/vim',{'frozen': 1}
 Plug 'NLKNguyen/papercolor-theme',{'frozen': 1}
@@ -82,21 +78,6 @@ Plug 'mattn/emmet-vim' , {'for' : ['html', 'css']}
 call plug#end()
 
 " pluginsVariables {{{
-
-"nerdtree-git-plugin {{{
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
-"}}}
 
 "coc-settings {{{
 
@@ -180,13 +161,6 @@ nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
 nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-" }}}
-
-" nerdtree {{{
-let g:NERDTreeWinPos='right'
-let g:NERDTreeWinSize=20
-let g:NERDTreeShowHidden=1
-let g:NERDMinimalMenu=1
 " }}}
 
 " airline {{{
