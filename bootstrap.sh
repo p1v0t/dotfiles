@@ -10,7 +10,7 @@ exit
 sudo apt-get update 
 sudo apt-get upgrade
 
-sudo apt-get install build-essential git yadm curl wget keepassx ninja-build cmake libpython-dev libpython3-dev i3 ccache clangd 
+sudo apt-get install build-essential git yadm curl wget keepassx ninja-build cmake libpython-dev libpython3-dev i3 udiskie gmtp ccache clangd 
 
 ## install pip
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
