@@ -21,7 +21,7 @@
 "diagnostic.errorSign": "🔥",
 "diagnostic.infoSign": "🕶️",
 
-"snippets.textmateSnippetsRoots": ["/home/adem/Github/snippets"],
+"snippets.textmateSnippetsRoots": ["/home/adem/github/snippets"],
 
 "workspace.ignoredFiletypes": [
 	"markdown",
@@ -85,7 +85,7 @@
 		"command":"clangd",
 		"filetypes": ["c", "cpp"],
 		"rootPatterns": ["compile_commands.json", "WORKSPACE",".git"],
-		"args": ["--compile-commands-dir=.",
+		"args": ["--compile-commands-dir=\".\"",
 			"--compile_args_from=lsp", // ignores compile_commands.json, alt opt compile_commands
 			"--all-scopes-completion",
 			"--background-index",
@@ -94,7 +94,6 @@
 		       	"--function-arg-placeholders",
 		       	"--header-insertion=iwyu",
 			"--limit-results=0",
-		       	"--suggest-missing-includes",
 		       	"-j=6",
 		       	"--pch-storage=memory",
 		       	"--log=error"]
