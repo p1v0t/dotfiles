@@ -1,105 +1,106 @@
 {
-"suggest.autoTrigger": "always",
-"suggest.triggerAfterInsertEnter": true,
-"suggest.timeout": 500,
-"suggest.noselect": false,
-"suggest.minTriggerInputLength": 3,
-"suggest.acceptSuggestionOnCommitCharacter": true,
-"suggest.disableMenu": true,
-"suggest.maxCompleteItemCount": 100,
-"suggest.detailMaxLength": 220,
+    "suggest.autoTrigger": "always",
+    "suggest.triggerAfterInsertEnter": true,
+    "suggest.timeout": 500,
+    "suggest.noselect": false,
+    "suggest.minTriggerInputLength": 3,
+    "suggest.acceptSuggestionOnCommitCharacter": true,
+    "suggest.disableMenu": true,
+    "suggest.maxCompleteItemCount": 100,
+    "suggest.detailMaxLength": 220,
 
-"diagnostic.enable": true,
-"diagnostic.refreshOnInsertMode": true,
-"diagnostic.checkCurrentLine": false,
-"diagnostic.displayByAle": false,
-"diagnostic.locationlist": true,
+    "diagnostic.enable": true,
+    "diagnostic.refreshOnInsertMode": true,
+    "diagnostic.checkCurrentLine": false,
+    "diagnostic.displayByAle": false,
+    "diagnostic.locationlist": true,
 
-"diagnostic.enableSign": true,
-"diagnostic.hintSign": "🤔",
-"diagnostic.warningSign": "⚡",
-"diagnostic.errorSign": "🔥",
-"diagnostic.infoSign": "🕶️",
+    "diagnostic.enableSign": true,
+    "diagnostic.hintSign": "🤔",
+    "diagnostic.warningSign": "⚡",
+    "diagnostic.errorSign": "🔥",
+    "diagnostic.infoSign": "🕶️",
 
-"snippets.textmateSnippetsRoots": ["/home/adem/github/snippets"],
+    "snippets.textmateSnippetsRoots": ["/home/adem/github/snippets"],
 
-"workspace.ignoredFiletypes": [
-	"markdown",
-	"log",
-	"txt",
-	"help"
-],
+    "workspace.ignoredFiletypes": [
+        "markdown",
+        "log",
+        "txt",
+        "help"
+    ],
 
-"suggest.completionItemKindLabels": {
-		"keyword": "⁘",
-		"variable": "⤚",
-		"value": "⤙",
-		"operator": "∓",
-		"function": "⨍",
-		"reference": "＆",
-		"constant": "∏",
-		"method": "∈",
-		"struct": "🆂",
-		"class": "🅲",
-		"interface": "🅘",
-		"text": "✎",
-		"enum": "🅔",
-		"enumMember": "ⓔ",
-		"module": "🅼",
-		"color": "\ue22b",
-		"property": "ₛ",
-		"field": "∊",
-		"unit": "₺",
-		"event": "🔌",
-		"file": "🗋",
-		"folder": "📂",
-		"snippet": "🍰",
-		"typeParameter": "𝐓",
-		"default": "⊜"
-},
+    "suggest.completionItemKindLabels": {
+        "keyword": "⁘",
+        "variable": "⤚",
+        "value": "⤙",
+        "operator": "∓",
+        "function": "⨍",
+        "reference": "＆",
+        "constant": "∏",
+        "method": "∈",
+        "struct": "🆂",
+        "class": "🅲",
+        "interface": "🅘",
+        "text": "✎",
+        "enum": "🅔",
+        "enumMember": "ⓔ",
+        "module": "🅼",
+        "color": "\ue22b",
+        "property": "ₛ",
+        "field": "∊",
+        "unit": "₺",
+        "event": "🔌",
+        "file": "🗋",
+        "folder": "📂",
+        "snippet": "🍰",
+        "typeParameter": "𝐓",
+        "default": "⊜"
+    },
 
-"coc.preferences.jumpCommand":"vsplit",
-"coc.preferences.extensionUpdateCheck": "weekly",
-"coc.preferences.snippets.enable": true,
-"coc.source.file.ignoreHidden": false,
+    "coc.preferences.jumpCommand": "vsplit",
+    "coc.preferences.extensionUpdateCheck": "weekly",
+    "coc.preferences.snippets.enable": true,
+    "coc.source.file.ignoreHidden": false,
 
 
- "languageserver": {
-	 "rustlang": {
-		"command":"rls",
-               "filetypes": ["rust", "rs"],
-		"rootPatterns": ["WORKSPACE", ".git"]
-	 },
+    "languageserver": {
+        "rustlang": {
+            "command": "rls",
+            "filetypes": ["rust", "rs"],
+            "rootPatterns": ["WORKSPACE", ".git"]
+        },
 
-  "flow": {
-      "command": "flow",
-      "args": ["lsp"],
-      "filetypes": ["javascript", "javascriptreact"],
-      "initializationOptions": {},
-      "requireRootPattern": true,
-      "settings": {},
-      "rootPatterns": [".flowconfig"]
-      },
+        "flow": {
+            "command": "flow",
+            "args": ["lsp"],
+            "filetypes": ["javascript", "javascriptreact"],
+            "initializationOptions": {},
+            "requireRootPattern": true,
+            "settings": {},
+            "rootPatterns": [".flowconfig"]
+        },
 
-	"clangd" : {
-		"command":"clangd",
-		"filetypes": ["c", "cpp"],
-		"rootPatterns": ["compile_commands.json", "WORKSPACE",".git"],
-		"args": ["--compile-commands-dir=\".\"",
-			"--compile_args_from=lsp", // ignores compile_commands.json, alt opt compile_commands
-			"--all-scopes-completion",
-			"--background-index",
-		       	"--completion-parse=always",
-		       	"--completion-style=bundled", 
-		       	"--function-arg-placeholders",
-		       	"--header-insertion=iwyu",
-			"--limit-results=0",
-		       	"-j=6",
-		       	"--pch-storage=memory",
-		       	"--log=error"]
-       	},
+        "clangd": {
+            "command": "clangd",
+            "filetypes": ["c", "cpp"],
+            "rootPatterns": ["compile_commands.json", "WORKSPACE", ".git"],
+            "args": ["--compile-commands-dir=\".\"",
+                "--compile_args_from=lsp", // ignores compile_commands.json, alt opt compile_commands
+                "--all-scopes-completion",
+                "--background-index",
+                "--completion-parse=always",
+                "--completion-style=bundled",
+                "--function-arg-placeholders",
+                "--header-insertion=iwyu",
+                "--limit-results=0",
+                "-j=6",
+                "--pch-storage=memory",
+                "--log=error"
+            ]
+        },
 
-	 /*
+        /*
 	"ccls" : {
 		"command":"ccls",
 		"filetypes": ["c", "cpp"],
@@ -108,55 +109,55 @@
 	},
 
 	*/
-    "serve-d": {
-        "command": "serve-d",
-		"filetypes":["d"],
-		"rootPatterns":[".vim", ".git", "WORKSPACE"]
-	},
+        "serve-d": {
+            "command": "serve-d",
+            "filetypes": ["d"],
+            "rootPatterns": [".vim", ".git", "WORKSPACE"]
+        },
 
-		      "golang": {
-			            "command": "gopls",
-				          "rootPatterns": ["go.mod"],
-					        "filetypes": ["go"]
-						    },
-    "dart": {
-      "command": "dart_language_server",
-	  "detached": false,
-      "args": [],
-      "filetypes": ["dart"],
-      "initializationOptions": {},
-      "settings": {
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": ["go.mod"],
+            "filetypes": ["go"]
+        },
         "dart": {
-          "validation": {},
-          "completion": {}
+            "command": "dart_language_server",
+            "detached": false,
+            "args": [],
+            "filetypes": ["dart"],
+            "initializationOptions": {},
+            "settings": {
+                "dart": {
+                    "validation": {},
+                    "completion": {}
+                }
+            }
+        },
+
+        "bash": {
+            "command": "bash-language-server",
+            "args": ["start"],
+            "filetypes": ["sh"],
+            "ignoredRootPaths": ["~"]
+        },
+
+        "haskell": {
+            "command": "hie-wrapper",
+            "args": ["--lsp"],
+            "rootPatterns": [
+                ".stack.yaml",
+                "cabal.config",
+                "package.yaml"
+            ],
+            "filetypes": [
+                "hs",
+                "lhs",
+                "haskell"
+            ],
+            "initializationOptions": {
+                "languageServerHaskell": {}
+            }
         }
-      }
-    },
 
-    "bash": {
-      "command": "bash-language-server",
-      "args": ["start"],
-      "filetypes": ["sh"],
-      "ignoredRootPaths": ["~"]
-    },
-
-	"haskell": {
-		"command": "hie-wrapper",
-		"args": ["--lsp"],
-		"rootPatterns": [
-		  ".stack.yaml",
-		  "cabal.config",
-		  "package.yaml"
-		],
-		"filetypes": [
-		  "hs",
-		  "lhs",
-		  "haskell"
-		],
-		"initializationOptions": {
-		  "languageServerHaskell": { }
-        }
-	}
-
- }
+    }
 }
