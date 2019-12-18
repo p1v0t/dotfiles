@@ -86,13 +86,12 @@
             "filetypes": ["c", "cpp"],
             "rootPatterns": ["compile_commands.json", "WORKSPACE", ".git"],
             "args": ["--compile-commands-dir=\".\"",
-                "--compile_args_from=lsp", // ignores compile_commands.json, alt opt compile_commands
+                "--compile_args_from=lsp",
                 "--all-scopes-completion",
                 "--background-index",
                 "--completion-parse=always",
                 "--completion-style=bundled",
                 "--function-arg-placeholders",
-                "--header-insertion=iwyu",
                 "--limit-results=0",
                 "-j=6",
                 "--pch-storage=memory",
@@ -100,15 +99,6 @@
             ]
         },
 
-        /*
-	"ccls" : {
-		"command":"ccls",
-		"filetypes": ["c", "cpp"],
-		"rootPatterns": ["compile_commands.json", "WORKSPACE",".git"],
-		"args": ["-v=0"]
-	},
-
-	*/
         "serve-d": {
             "command": "serve-d",
             "filetypes": ["d"],

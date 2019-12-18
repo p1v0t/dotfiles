@@ -137,6 +137,7 @@ bindsym XF86MonBrightnessDown exec "light -U 5; notify-send 'brightness down'";
 
 # Touchpad controls
 bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+exec xinput set-prop 13 288 1
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play

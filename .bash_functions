@@ -51,6 +51,11 @@ weather() {
   curl -s wttr.in/$1
 }
 
+wifiupdown() {
+   nmcli radio wifi off
+   nmcli radio wifi on
+}
+
 man() {
     env \
     LESS_TERMCAP_mb=$'\e[01;31m' \
@@ -62,4 +67,5 @@ man() {
     LESS_TERMCAP_us=$'\e[04;38;5;146m' \
     man "$@"
 }
+
 

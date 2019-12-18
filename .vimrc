@@ -1,6 +1,3 @@
-if !exists('g:syntax_on')
-    syntax enable
-endif
 
 if has('autocmd')
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -47,7 +44,8 @@ Plug 'jsfaint/coc-neoinclude'
 Plug 'neoclide/coc.nvim', {'for':['zig','cmake','rust',
 			\'java','json', 'haskell', 'ts','sh',
 			\'yaml', 'c', 'cpp', 'd', 'go',
-			\'python', 'dart', 'javascript'], 'do': { -> coc#util#install()}}
+			\'python', 'dart', 'javascript', 'vim'], 
+			\'do': { -> coc#util#install()}}
 
 Plug 'rust-lang/rust.vim', {'for' : ['rust']}
 Plug 'ziglang/zig.vim', {'for' : ['zig']}
