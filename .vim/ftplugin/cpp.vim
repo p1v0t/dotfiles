@@ -22,7 +22,6 @@ let g:ale_cpp_gcc_executable='g++-9'
 let g:ale_cpp_gcc_options='-std=c++2a'
 " }}}
 
-
 " clang-include-fixer {{{
 let g:clang_include_fixer_path = "clang-include-fixer"
 let g:clang_include_fixer_maximum_suggested_headers = 3
@@ -33,6 +32,8 @@ noremap <leader>cf :pyf /home/adem/Desktop/projects/llvm-project/clang-tools-ext
 " }}}
 
 " Single compile {{{ 
+call SingleCompile#ChooseCompiler('cpp', 'clang')
+
 nnoremap <F5> :SCCompileRunAF -g -Wall -Wextra -std=c++2a<cr>
 let g:SingleCompile_showquickfixiferror = 1
 let g:SingleCompile_menumode = 1
