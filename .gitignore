@@ -1,0 +1,11 @@
+build/
+external/
+.vscode/
+*.swp
+*.gch
+*.exe
+*.out
+*.ccls-cache/
+*.gcov
+compile_commands.json
+*.plist
