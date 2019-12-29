@@ -41,7 +41,8 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'Shougo/neoinclude.vim'
 Plug 'jsfaint/coc-neoinclude'
-Plug 'neoclide/coc.nvim', {'for':['zig','cmake','rust',
+Plug 'neoclide/coc.nvim', {'branch': 'release',
+			\'for':['zig','cmake','rust',
 			\'java','json', 'haskell', 'ts','sh',
 			\'yaml', 'c', 'cpp', 'd', 'go',
 			\'python', 'dart', 'javascript', 'vim'], 
@@ -57,7 +58,6 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 
 Plug 'vim-scripts/SingleCompile'
-Plug 'wincent/command-t'
 
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
