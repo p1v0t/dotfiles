@@ -21,7 +21,7 @@
     "diagnostic.errorSign": "🔥",
     "diagnostic.infoSign": "🕶️",
 
-    "snippets.textmateSnippetsRoots": ["/home/adem/github/snippets"],
+    "snippets.textmateSnippetsRoots": ["/home/adem/.config/snippets"],
 
     "workspace.ignoredFiletypes": [
         "markdown",
