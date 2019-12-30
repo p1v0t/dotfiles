@@ -15,6 +15,7 @@ nnoremap <silent>ve :edit $MYVIMRC<enter>
 let g:goyo_width = 90
 let g:goyo_height = 100
 let g:goyo_linenr = 0
+
 nnoremap <silent><C-f> :Goyo<enter>
 
 nmap <silent><Leader>l :Limelight!! 0.7<enter>
@@ -50,12 +51,15 @@ Plug 'neoclide/coc.nvim', {'branch': 'release',
 
 Plug 'rust-lang/rust.vim', {'for' : ['rust']}
 Plug 'ziglang/zig.vim', {'for' : ['zig']}
-Plug 'dense-analysis/ale', {'for' : ['sh', 'vim', 'javascript']}
+Plug 'dense-analysis/ale', {'for' : ['sh', 'vim', 'javascript','cpp']}
 Plug 'tpope/vim-surround'
-Plug 'fatih/vim-go', { 'for': ['go'], 'do': ':GoUpdateBinaries' }
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
+
+Plug 'fatih/vim-go', {'tag':'v1.20',
+			\ 'for': ['go'], 'do': ':GoUpdateBinaries',
+			\'frozon': 1 }
 
 Plug 'vim-scripts/SingleCompile'
 
@@ -88,7 +92,6 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 
-
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
@@ -117,10 +120,6 @@ function! s:show_documentation()
 endfunction
 
 map rn <Plug>(coc-rename)
-
-" Remap for format selected region
-vmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
