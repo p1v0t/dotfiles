@@ -1,4 +1,4 @@
-syntax off
+syntax on
 " vim-clang-format {{{
 let g:clang_format#command='clang-format'
 let g:clang_format#code_style='llvm'
@@ -12,8 +12,10 @@ let g:clang_format#style_options = {
 " }}}
 
 " ALE {{{
-let g:ale_cpp_clang_executable='clang++'
-let g:ale_cpp_clangd_executable='clangd'
+let g:ale_cpp_clang_executable=''
+let g:ale_cpp_clang_options=["-std=c++2a"]
+let g:ale_cpp_clangd_executable=''
+let g:ale_cpp_clangd_options=["--compile-commands-dir=src","-j2" ]
 let g:ale_cpp_clangcheck_executable='clang-check'
 let g:ale_cpp_clangtidy_executable='clang-tidy'
 let g:ale_cpp_clangtidy_checks=["-checks", "-*", "bugprone-*"]
