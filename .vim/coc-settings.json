@@ -84,10 +84,13 @@
         "clangd": {
             "command": "clangd",
             "filetypes": ["c", "cpp"],
-            "rootPatterns": ["compile_commands.json", "WORKSPACE", ".git"],
-            "args": ["--compile-commands-dir=\".\"",
-                "--compile_args_from=lsp",
+            "rootPatterns": ["compile_commands.json", 
+				"WORKSPACE",
+			   	".git"],
+
+            "args": ["--compile-commands-dir=build",
                 "--all-scopes-completion",
+                "--header-insertion=never",
                 "--background-index",
                 "--completion-parse=always",
                 "--completion-style=bundled",
@@ -95,7 +98,8 @@
                 "--limit-results=0",
                 "-j=6",
                 "--pch-storage=memory",
-                "--log=error"
+                "--log=verbose",
+                "--pretty"
             ]
         },
 
