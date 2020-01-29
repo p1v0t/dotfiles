@@ -57,7 +57,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release',
 
 Plug 'rust-lang/rust.vim', {'for' : ['rust']}
 Plug 'ziglang/zig.vim', {'for' : ['zig']}
-Plug 'dense-analysis/ale', {'for' : ['sh', 'vim', 'javascript']}
+Plug 'dense-analysis/ale', {'for' : ['cpp', 'sh', 'vim', 'javascript']}
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-dispatch'
@@ -82,6 +82,7 @@ Plug 'mileszs/ack.vim',{'frozen': 1}
 Plug 'rhysd/vim-clang-format', {'for' : ['c', 'cpp']}
 
 Plug 'mattn/emmet-vim' , {'for' : ['html', 'css']}
+Plug 'pseewald/vim-anyfold', {'for' : ['cpp']}
 
 call plug#end()
 
@@ -206,7 +207,7 @@ set swapfile
 set nobackup
 set noerrorbells
 set autowrite
-set ignorecase
+set noignorecase
 set ruler 
 set cursorline
 set colorcolumn=110
