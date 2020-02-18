@@ -15,7 +15,20 @@ let g:clang_format#style_options = {
 let g:ale_cpp_clang_executable=''
 let g:ale_cpp_clang_options=["-std=c++2a"]
 let g:ale_cpp_clangd_executable=''
-let g:ale_cpp_clangd_options=["--compile-commands-dir=src","-j2" ]
+let g:ale_cpp_clangd_options=["--compile-commands-dir=build",
+			\ "--all-scopes-completion",
+			\    "--header-insertion=never",
+			\    "--background-index",
+			\    "--completion-parse=always",
+			\    "--completion-style=bundled",
+			\    "--function-arg-placeholders",
+			\    "--limit-results=0",
+			\    "-j=1",
+			\    "--pch-storage=memory",
+			\    "--log=verbose",
+			\    "--pretty"]
+
+
 let g:ale_cpp_clangcheck_executable='clang-check'
 let g:ale_cpp_clangtidy_executable='clang-tidy'
 let g:ale_cpp_clangtidy_checks=["-checks", "-*", "bugprone-*"]
