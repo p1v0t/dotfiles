@@ -94,10 +94,6 @@ let g:coc_snippet_next = '<TAB>'
 let g:coc_snippet_prev = '<S-TAB>'
 " }}}
 
-" airline {{{
-let g:airline_exclude_filetypes = ['md']
-" }}}
-
 " ack {{{
 let g:ackprg = 'ag --vimgrep'
 " }}}
@@ -116,6 +112,12 @@ xmap <silent><Leader>l :Limelight!! 0.7<enter>
 
 " ALE {{{
 let g:ale_lint_delay = 10
+" }}}
+
+" lightline {{{
+let g:lightline = {
+      \ 'colorscheme': 'jellybeans',
+      \ }
 " }}}
 
 " variables {{{
