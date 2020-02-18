@@ -31,18 +31,15 @@
 	heper = cache --timeout=3600
 
 [alias]
-
-	# View abbreviated SHA, description, and history graph of the latest 20 commits
-	# l = log --pretty=oneline -n 20 --graph --abbrev-commit
 	l = log --all --graph --oneline --abbrev-commit --decorate
-
 	st = status
 	tags = tag -l
+	br = branch 
 	branches = branch -a
 	remotes = remote -v
 	diff = diff --word-diff
 
-	c = clone --recursive 
+	get = clone --recursive 
 	co = checkout
 	uncommit = reset --soft HEAD^
 	delcommit = --amend
