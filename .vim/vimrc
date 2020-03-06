@@ -10,8 +10,7 @@ Plug 'jsfaint/coc-neoinclude'
 Plug 'neoclide/coc.nvim', {'for':['zig','cmake','rust',
 			\'java','json', 'haskell', 'ts','sh',
 			\'yaml', 'c', 'cpp', 'd', 'go',
-			\'python', 'dart', 'javascript', 'vim'], 
-			\'do': { -> coc#util#install()}}
+			\'python', 'dart', 'javascript', 'vim'], 'branch': 'release'}
 
 Plug 'rust-lang/rust.vim', {'for' : ['rust']}
 Plug 'ziglang/zig.vim', {'for' : ['zig']}
