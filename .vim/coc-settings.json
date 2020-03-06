@@ -61,6 +61,12 @@
     "coc.preferences.jumpCommand": "vsplit",
     "coc.preferences.extensionUpdateCheck": "weekly",
     "coc.preferences.snippets.enable": true,
+	"coc.preferences.bracketEnterImprove": true,
+	"coc.preferences.rootPatterns": [
+		".git",
+		"CMakeLists.txt",
+		"packages.json"
+	],
     "coc.source.file.ignoreHidden": false,
 
 
