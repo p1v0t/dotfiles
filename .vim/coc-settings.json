@@ -77,14 +77,13 @@
             "rootPatterns": ["WORKSPACE", ".git"]
         },
 
-        "flow": {
-            "command": "flow",
-            "args": ["lsp"],
+   "javscript-typescript": {
+            "command": "javascript-typescript-stdio",
             "filetypes": ["javascript", "javascriptreact"],
             "initializationOptions": {},
             "requireRootPattern": true,
             "settings": {},
-            "rootPatterns": [".flowconfig"]
+            "rootPatterns": ["package.json", "node_modules"]
         },
 
         "clangd": {
@@ -101,6 +100,8 @@
                 "--completion-parse=always",
                 "--completion-style=bundled",
                 "--function-arg-placeholders",
+                "--header-insertion-decorators",
+				"--suggest-missing-includes",
                 "--limit-results=0",
                 "-j=6",
                 "--pch-storage=memory",

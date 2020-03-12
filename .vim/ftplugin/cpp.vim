@@ -37,15 +37,6 @@ let g:ale_cpp_gcc_executable='g++-9'
 let g:ale_cpp_gcc_options='-std=c++2a'
 " }}}
 
-" clang-include-fixer {{{
-let g:clang_include_fixer_path = "clang-include-fixer"
-let g:clang_include_fixer_maximum_suggested_headers = 3
-let g:clang_include_fixer_increment_num = 5
-let g:clang_include_fixer_jump_to_include = 0
-let g:clang_include_fixer_query_mode = 0
-noremap <leader>cf :pyf /home/adem/Desktop/projects/llvm-project/clang-tools-extra/clang-include-fixer/tool/clang-include-fixer.py<enter>
-" }}}
-
 " Single compile {{{ 
 call SingleCompile#ChooseCompiler('cpp', 'clang')
 
