@@ -2,47 +2,44 @@
 
 set -e  # abort process if any of them fail
 
-## install pip
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 sudo python get-pip.py
 rm get-pip.py
 
 pip install conan cmake --user
 
-## clone repos
-git clone --depth=1 https://github.com/vim/vim.git
-## build vim 
-### configure
-cd vim
-./configure --prefix=/home/adem/.bin/vim \
-    --enable-fail-if-missing \
-	--disable-darwin \
-	--disable-smack \
-	--disable-selinux \
-	--enable-python3interp=yes \
-	--with-python3-config-dir=/usr/lib/python3.5/config-3.5m-x86_64-linux-gnu \
-	--enable-cscope \
-	--disable-netbeans \
-	--enable-terminal \
-	--enable-autoservername \
-	--enable-multibyte \
-	--disable-rightleft \
-	--disable-arabic \
-	--enable-fontset \
-	--enable-gui=no \
-	--enable-gtk2-check=no \
-	--enable-gtk3-check=no \
-	--enable-athena-check=no \
-    --enable-motif-check=no \
-	--enable-nextaw-check=no \
-	--enable-carbon-check=no \
-	--disable-gtktest \
-    --enable-nextaw-check=no \
-	--with-compiledby=p1v0t
+git clone --depth=1 https://github.com/vim/vim.git; cd vim
 
-### make and install
+./configure --prefix=/home/adem/.config/vim \
+--enable-fail-if-missing  \
+--disable-darwin  \
+--disable-smack  \
+--disable-selinux \
+--enable-pythoninterp=yes  \
+--with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu/ \
+--enable-python3interp=yes  \
+--with-python3-config-dir=/usr/lib/python3.7/config-3.7m-x86_64-linux-gnu/ \
+--enable-cscope \
+--disable-netbeans \
+--enable-terminal \
+--enable-autoservername \
+--enable-multibyte \
+--disable-rightleft \
+--disable-arabic \
+--enable-fontset \
+--enable-gui=no \
+--enable-gtk2-check=no \
+--enable-gtk3-check=no \
+--enable-athena-check=no \
+--enable-motif-check=no \
+--enable-nextaw-check=no \
+--enable-carbon-check=no \
+--disable-gtktest \
+--enable-nextaw-check=no \
+--with-compiledby=p1v0t 
+
 make -j 8
-sudo make install
+make install
 
 ## get plugin manager 
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
