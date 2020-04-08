@@ -1,4 +1,5 @@
 source ~/.vim/defaults.vim
+source ~/.vim/options.vim
 
 let mapleader = "'"
 		
@@ -33,7 +34,6 @@ Plug 'NLKNguyen/papercolor-theme',{'frozen': 1}
 
 Plug 'mileszs/ack.vim',{'frozen': 1}
 Plug 'rhysd/vim-clang-format', {'for' : ['c', 'cpp']}
-Plug 'octol/vim-cpp-enhanced-highlight'
 
 Plug 'mattn/emmet-vim' , {'for' : ['html', 'css']}
 Plug 'kkoomen/vim-doge', {'for' :['cpp']}
@@ -87,6 +87,7 @@ nmap <silent>fa <Plug>(coc-refactor)
 
 let g:coc_snippet_next = '<TAB>'
 let g:coc_snippet_prev = '<S-TAB>'
+let g:coc_global_extensions = ["coc-snippets", "coc-json"]
 " }}}
 
 " ack {{{
@@ -113,57 +114,7 @@ let g:ale_lint_delay = 10
 let g:lightline = {
       \ 'colorscheme': 'jellybeans',
       \ }
+
 " }}}
 
-" variables {{{
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set noexpandtab
-
-set hlsearch
-set incsearch
-set hidden
-set nobackup
-set nowritebackup
-set updatetime=300
-set shortmess+=c 
-set signcolumn=yes
-set smarttab
-set nonumber
-set ttyfast
-set showcmd
-set cmdheight=1
-set swapfile
-set nobackup
-set noerrorbells
-set autowrite
-set ignorecase
-set ruler 
-set cursorline
-set colorcolumn=110
-set title
-set showmatch
-set noshowmode
-set mouse=v
-set modifiable
-set splitright
-set splitbelow
-set shortmess=atI
-set backspace=indent,eol,start
-set wildmenu
-set encoding=utf-8 nobomb
-set binary
-set autoread
-set mousehide
-set spelllang=en_US
-set fileformat=unix
-set autoread
-set autowrite
-set laststatus=2
-set termwinsize=10*0
-set number
-" }}}
-
-set background=dark
 colorscheme PaperColor
