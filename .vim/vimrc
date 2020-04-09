@@ -38,6 +38,7 @@ Plug 'rhysd/vim-clang-format', {'for' : ['c', 'cpp']}
 Plug 'mattn/emmet-vim' , {'for' : ['html', 'css']}
 Plug 'kkoomen/vim-doge', {'for' :['cpp']}
 Plug 'tarekbecker/vim-yaml-formatter', {'for' :['yaml']}
+Plug 'roman/golden-ratio'
 
 call plug#end()
 
