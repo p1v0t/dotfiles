@@ -22,3 +22,4 @@ noremap <C-k> <C-W>k
 noremap <C-h> <C-W>h
 noremap <C-l> <C-W>l
 
+nnoremap Q <nop>
