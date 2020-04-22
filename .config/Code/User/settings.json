@@ -1,0 +1,38 @@
+{
+    "editor.formatOnSave": true,
+    "editor.folding": true,
+    "editor.codeLens": true,
+    "editor.tabCompletion": "on",
+    "editor.minimap.enabled": false,
+    "extensions.autoCheckUpdates": false,
+    "extensions.autoUpdate": false,
+    "extensions.showRecommendationsOnlyOnDemand": false,
+    "extensions.ignoreRecommendations": true,
+    "clangd.path": "/home/adem/.bin/clangd",
+    "clangd.semanticHighlighting": true,
+    "clangd.arguments": [
+        "--query-driver=/usr/bin/**/clang-*",
+        "--all-scopes-completion",
+        "--header-insertion=never",
+        "--clang-tidy",
+        "--clang-tidy-checks= -* bugprone-*",
+        "--background-index",
+        "--completion-parse=always",
+        "--completion-style=detailed",
+        "--function-arg-placeholders",
+        "--header-insertion-decorators",
+        "--suggest-missing-includes",
+        "--limit-results=0",
+        "-j=6",
+        "--pch-storage=memory",
+        "--log=verbose",
+        "--pretty"
+    ],
+    "cmake.cmakePath": "/opt/cmake/bin/cmake",
+    "cmake.buildDirectory": "${workspaceFolder}/build",
+    "cmake.generator": "Ninja",
+    "cmake.configureArgs": [
+        "-DCMAKE_CXX_FLAGS:String=-stdlib=libc++"
+    ],
+    "cmake.useCMakeServer": true,
+}
