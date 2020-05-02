@@ -35,4 +35,6 @@
         "-DCMAKE_CXX_FLAGS:String=-stdlib=libc++"
     ],
     "cmake.useCMakeServer": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "cmake.configureOnOpen": false,
 }
