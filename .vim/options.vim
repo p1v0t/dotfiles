@@ -4,7 +4,7 @@ set softtabstop=4
 set shiftwidth=4
 set noexpandtab
 
-set hlsearch
+set nohlsearch
 set incsearch
 set hidden
 set nobackup
@@ -47,5 +47,6 @@ set laststatus=2
 set termwinsize=10*0
 set number
 set background=dark
+set formatoptions=c,l,1,p
 " }}}
 

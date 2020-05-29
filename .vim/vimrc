@@ -36,13 +36,23 @@ Plug 'mileszs/ack.vim',{'frozen': 1}
 Plug 'rhysd/vim-clang-format', {'for' : ['c', 'cpp']}
 
 Plug 'mattn/emmet-vim' , {'for' : ['html', 'css']}
-Plug 'kkoomen/vim-doge', {'for' :['cpp']}
 Plug 'tarekbecker/vim-yaml-formatter', {'for' :['yaml']}
-Plug 'roman/golden-ratio'
+"Plug 'roman/golden-ratio'
+
+Plug 'vim-scripts/DoxygenToolkit.vim', {'for' : ['cpp', 'c']}
+
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'preservim/nerdtree'
 
 call plug#end()
 
+
 " pluginsVariables {{{
+
+" nerdtree-settings  {{{
+let g:golden_ratio_exclude_nonmodifiable = 1
+let b:golden_ratio_resizing_ignored = 1
+" }}}
 
 " coc-settings {{{
 
@@ -79,6 +89,12 @@ nmap <silent>fo <Plug>(coc-format)
 nmap <silent><leader>i <Plug>(coc-implementation)
 nmap <silent><leader>t <Plug>(coc-type-definition)
 nmap <silent>fa <Plug>(coc-refactor)
+
+nmap <silent>s <Plug>(coc-range-select)
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
 
 "nmap <silent><leader>d <Plug>(coc-codeaction)
 "nmap <silent>d <Plug>(coc-float-hide)
@@ -117,5 +133,8 @@ let g:lightline = {
       \ }
 
 " }}}
+
+let g:clang_rename_path='clang-rename'
+noremap <leader>cr :py3f /usr/bin/clang-rename.py<cr>
 
 colorscheme PaperColor

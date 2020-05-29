@@ -31,14 +31,14 @@ let g:ale_cpp_clangd_options=["--compile-commands-dir=build",
 
 let g:ale_cpp_clangcheck_executable='clang-check'
 let g:ale_cpp_clangtidy_executable='clang-tidy'
-let g:ale_cpp_clangtidy_checks=["-checks", "-*", "bugprone-*"]
+let g:ale_cpp_clangtidy_checks=["-checks", "*"]
 
-let g:ale_cpp_gcc_executable='g++-9'
+let g:ale_cpp_gcc_executable='g++'
 let g:ale_cpp_gcc_options='-std=c++2a'
 " }}}
 
 " Single compile {{{ 
-call SingleCompile#ChooseCompiler('cpp', 'clang')
+call SingleCompile#ChooseCompiler('cpp', 'g++')
 
 nnoremap <F5> :SCCompileRunAF -g -Wall -Wextra -std=c++2a<cr>
 let g:SingleCompile_showquickfixiferror = 1
