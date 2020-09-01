@@ -1,6 +1,12 @@
 source ~/.vim/defaults.vim
 source ~/.vim/options.vim
 
+augroup remember_folds
+  autocmd!
+  autocmd BufWinLeave * mkview
+  autocmd BufWinEnter * silent! loadview
+augroup END
+
 let mapleader = "'"
 		
 " plugins {{{
@@ -9,13 +15,13 @@ call plug#begin('~/.vim/plugged')
 Plug 'Shougo/neoinclude.vim'
 Plug 'jsfaint/coc-neoinclude'
 Plug 'neoclide/coc.nvim', {'for':['zig','cmake','rust',
-			\'java','json', 'haskell', 'ts','sh',
+			\'java','json', 'haskell', 'ts','sh', 'cs',
 			\'yaml', 'c', 'cpp', 'd', 'go',
 			\'python', 'dart', 'javascript', 'vim'], 'branch': 'release'}
 
 Plug 'rust-lang/rust.vim', {'for' : ['rust']}
 Plug 'ziglang/zig.vim', {'for' : ['zig']}
-Plug 'dense-analysis/ale', {'for' : ['yaml', 'cpp', 'sh', 'vim', 'javascript']}
+Plug 'dense-analysis/ale', {'for' : ['yaml',  'sh', 'vim', 'javascript']}
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-dispatch'
@@ -25,6 +31,7 @@ Plug 'vim-scripts/SingleCompile'
 
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'aditya-azad/candle-grey'
 
 Plug 'ollykel/v-vim', {'for' : ['v']}
 
@@ -41,7 +48,6 @@ Plug 'tarekbecker/vim-yaml-formatter', {'for' :['yaml']}
 
 Plug 'vim-scripts/DoxygenToolkit.vim', {'for' : ['cpp', 'c']}
 
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'preservim/nerdtree'
 
 call plug#end()
@@ -52,6 +58,7 @@ call plug#end()
 " nerdtree-settings  {{{
 let g:golden_ratio_exclude_nonmodifiable = 1
 let b:golden_ratio_resizing_ignored = 1
+nnoremap ne :NERDTreeToggle <Enter>
 " }}}
 
 " coc-settings {{{
@@ -104,7 +111,7 @@ xmap ac <Plug>(coc-classobj-a)
 
 let g:coc_snippet_next = '<TAB>'
 let g:coc_snippet_prev = '<S-TAB>'
-let g:coc_global_extensions = ["coc-snippets", "coc-json"]
+let g:coc_global_extensions = ['coc-snippets', 'coc-json', 'coc-java', 'coc-cmake']
 " }}}
 
 " ack {{{
@@ -123,10 +130,6 @@ nmap <silent><Leader>l :Limelight!! 0.7<enter>
 xmap <silent><Leader>l :Limelight!! 0.7<enter>
 " }}}
 
-" ALE {{{
-let g:ale_lint_delay = 10
-" }}}
-
 " lightline {{{
 let g:lightline = {
       \ 'colorscheme': 'jellybeans',
@@ -138,3 +141,4 @@ let g:clang_rename_path='clang-rename'
 noremap <leader>cr :py3f /usr/bin/clang-rename.py<cr>
 
 colorscheme PaperColor
+"colorscheme candle-grey
