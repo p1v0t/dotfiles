@@ -10,6 +10,7 @@
   "suggest.detailMaxLength":220,
   "diagnostic.enable":true,
   "diagnostic.refreshOnInsertMode":true,
+  "diagnostic.refreshAfterSave": true,
   "diagnostic.checkCurrentLine":false,
   "diagnostic.displayByAle":false,
   "diagnostic.locationlist":true,
@@ -21,7 +22,7 @@
   "diagnostic.format":"[%severity] %message",
   "codeLens.enable":true,
   "snippets.textmateSnippetsRoots":[
-    "/home/adem/.config/snippets"
+    "/home/adembudak/.config/snippets"
   ],
   "workspace.ignoredFiletypes":[
     "markdown",
@@ -96,7 +97,7 @@
       ]
     },
     "clangd":{
-      "command":"clangd",
+      "command":"clangd-11",
       "filetypes":[
         "c",
         "cpp"
