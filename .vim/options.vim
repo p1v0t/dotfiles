@@ -28,7 +28,7 @@ set colorcolumn=110
 set title
 set showmatch
 set noshowmode
-set mouse=n
+set mouse=v
 set modifiable
 set splitright
 set splitbelow
