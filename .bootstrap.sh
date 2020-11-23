@@ -2,48 +2,19 @@
 
 set -e  # abort process if any of them fail
 
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o ~/.git-prompt.sh
+curl https://github.com/alacritty/alacritty/releases/download/v0.5.0/alacritty.bash -o ~/.alacritty.bash
+
+# install pip
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 sudo python get-pip.py
 rm get-pip.py
 
+# install Conan C++ package manager
 pip install conan cmake --user
 
-git clone --depth=1 https://github.com/vim/vim.git; cd vim
+# install cmake
+curl -LJOk https://github.com/Kitware/CMake/releases/download/v3.19.0/cmake-3.19.0-Linux-x86_64.sh
+chmod u+x cmake-3.19.0-Linux-x86_64.sh
+./cmake-3.19.0-Linux-x86_64.sh --prefix=/usr/local --exclude-subdir --skip-license
 
-./configure --prefix=/home/adem/.config/vim \
---enable-fail-if-missing  \
---disable-darwin  \
---disable-smack  \
---disable-selinux \
---enable-pythoninterp=yes  \
---with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu/ \
---enable-python3interp=yes  \
---with-python3-config-dir=/usr/lib/python3.7/config-3.7m-x86_64-linux-gnu/ \
---enable-cscope \
---disable-netbeans \
---enable-terminal \
---enable-autoservername \
---enable-multibyte \
---disable-rightleft \
---disable-arabic \
---enable-fontset \
---enable-gui=no \
---enable-gtk2-check=no \
---enable-gtk3-check=no \
---enable-athena-check=no \
---enable-motif-check=no \
---enable-nextaw-check=no \
---enable-carbon-check=no \
---disable-gtktest \
---enable-nextaw-check=no \
---with-compiledby=p1v0t 
-
-make -j 8
-make install
-
-## get plugin manager 
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-### clone configuration files
-git clone https://github.com/p1v0t/dotfiles.git 
