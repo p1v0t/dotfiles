@@ -1,11 +1,9 @@
-augroup remember_folds
-  autocmd!
-  autocmd BufWinLeave * mkview
-  autocmd BufWinEnter * silent! loadview
-augroup END
-
 let mapleader = "'"
 		
+if has('gui')
+   set guifont=Roboto\ Mono
+endif
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'Shougo/neoinclude.vim'
@@ -18,6 +16,7 @@ Plug 'neoclide/coc.nvim', {'for':['zig','cmake','rust',
 Plug 'rust-lang/rust.vim', {'for' : ['rust']}
 Plug 'ziglang/zig.vim', {'for' : ['zig']}
 Plug 'dense-analysis/ale', {'for' : ['yaml',  'sh', 'vim', 'javascript']}
+
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-dispatch'
