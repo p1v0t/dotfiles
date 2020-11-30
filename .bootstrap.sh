@@ -1,20 +1,40 @@
 #!/usr/bin/env bash
 
-set -e  # abort process if any of them fail
+set -e
+set -o verbose 
 
-curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o ~/.git-prompt.sh
-curl https://github.com/alacritty/alacritty/releases/download/v0.5.0/alacritty.bash -o ~/.alacritty.bash
+clear
 
-# install pip
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+sudo apt install build-essential tree git curl
+
+wget --show-progress --no-verbose --output-document ~/.git-prompt.sh \
+https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+
+wget --show-progress --no-verbose --output-document ~/.alacritty.bash \
+https://github.com/alacritty/alacritty/releases/download/v0.5.0/alacritty.bash
+
+wget --show-progress --no-verbose --output-document \
+https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-linux.zip
+unzip ninja.zip
+sudo mv ./ninja /usr/local/bin
+
+sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+
+wget --show-progress --no-verbose --output-document get-pip.py
+https://bootstrap.pypa.io/get-pip.py
 sudo python get-pip.py
-rm get-pip.py
 
-# install Conan C++ package manager
-pip install conan cmake --user
+pip install conan --user
 
-# install cmake
-curl -LJOk https://github.com/Kitware/CMake/releases/download/v3.19.0/cmake-3.19.0-Linux-x86_64.sh
+wget --show-progress --no-verbose --output-document cmake-3.19.0-Linux-x86_64.sh \
+https://github.com/Kitware/CMake/releases/download/v3.19.0/cmake-3.19.0-Linux-x86_64.sh
 chmod u+x cmake-3.19.0-Linux-x86_64.sh
-./cmake-3.19.0-Linux-x86_64.sh --prefix=/usr/local --exclude-subdir --skip-license
+sudo ./cmake-3.19.0-Linux-x86_64.sh --prefix=/usr/local --exclude-subdir --skip-license
 
+sudo apt install pandoc
+
+echo 'set completion-ignore-case on' > ~/.inputrc
+echo 'set bell-style none' >> ~/.inputrc
+source ~/.bashrc
+
+exit
