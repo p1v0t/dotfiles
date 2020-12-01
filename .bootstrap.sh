@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
-set -o verbose 
+set -ev
 
 clear
 
@@ -32,6 +31,8 @@ chmod u+x cmake-3.19.0-Linux-x86_64.sh
 sudo ./cmake-3.19.0-Linux-x86_64.sh --prefix=/usr/local --exclude-subdir --skip-license
 
 sudo apt install pandoc
+
+git clone --depth 1 https://github.com/adembudak/snippets.git ~/.config/snippets
 
 echo 'set completion-ignore-case on' > ~/.inputrc
 echo 'set bell-style none' >> ~/.inputrc
