@@ -1,6 +1,7 @@
 syntax on
+
 " vim-clang-format {{{
-let g:clang_format#command='clang-format'
+let g:clang_format#command='clang-format-11'
 let g:clang_format#code_style='llvm'
 let g:clang_format#detect_style_file=1
 let g:clang_format#auto_format=1 
@@ -29,20 +30,11 @@ let g:ale_cpp_clangd_options=["--compile-commands-dir=build",
 			\    "--pretty"]
 
 
-let g:ale_cpp_clangcheck_executable='clang-check'
-let g:ale_cpp_clangtidy_executable='clang-tidy'
+let g:ale_cpp_clangcheck_executable='clang-check-11'
+let g:ale_cpp_clangtidy_executable='clang-tidy-11'
 let g:ale_cpp_clangtidy_checks=["-checks", "*"]
 
 let g:ale_cpp_gcc_executable='g++'
 let g:ale_cpp_gcc_options='-std=c++2a'
 " }}}
 
-" Single compile {{{ 
-call SingleCompile#ChooseCompiler('cpp', 'g++')
-
-nnoremap <F5> :SCCompileRunAF -g -Wall -Wextra -std=c++2a<cr>
-let g:SingleCompile_showquickfixiferror = 1
-let g:SingleCompile_menumode = 1
-let g:SingleCompile_quickfixwindowposition = 'vertical'
-let g:SingleCompile_split = 'tabe'
-" }}}

@@ -22,8 +22,6 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 
-Plug 'vim-scripts/SingleCompile'
-
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'aditya-azad/candle-grey'
@@ -107,7 +105,7 @@ let g:ackprg = 'ag --vimgrep'
 
 " Goyo {{{
 let g:goyo_width = 90
-let g:goyo_height = 120
+let g:goyo_height = 170
 let g:goyo_linenr = 0
 nnoremap <silent><C-f> :Goyo<enter>
 " }}}
@@ -128,8 +126,8 @@ let g:clang_rename_path='clang-rename'
 noremap <leader>cr :py3f /usr/bin/clang-rename.py<cr>
 
 colorscheme PaperColor
-"colorscheme candle-grey
-nnoremap ; :
+
+nnoremap <nowait> ; :
 nnoremap <silent>ve :edit $MYVIMRC<enter>
 
 
@@ -154,6 +152,7 @@ noremap <C-h> <C-W>h
 noremap <C-l> <C-W>l
 
 nnoremap Q <nop>
+
 " options {{{
 set tabstop=4
 set softtabstop=4
