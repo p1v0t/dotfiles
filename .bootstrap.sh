@@ -27,11 +27,15 @@ rm get-pip.py
 
 pip install conan --user
 
-wget --show-progress --no-verbose --output-document cmake-3.19.0-Linux-x86_64.sh \
-https://github.com/Kitware/CMake/releases/download/v3.19.0/cmake-3.19.0-Linux-x86_64.sh
-chmod u+x cmake-3.19.0-Linux-x86_64.sh
-sudo ./cmake-3.19.0-Linux-x86_64.sh --prefix=/usr/local --exclude-subdir --skip-license
-rm cmake-3.19.0-Linux-x86_64.sh \
+wget --show-progress --no-verbose --output-document cmake-3.19.2-Linux-x86_64.sh \
+https://github.com/Kitware/CMake/releases/download/v3.19.2/cmake-3.19.2-Linux-x86_64.sh
+chmod u+x cmake-3.19.2-Linux-x86_64.sh
+sudo ./cmake-3.19.2-Linux-x86_64.sh --prefix=/usr/local --exclude-subdir --skip-license
+rm cmake-3.19.2-Linux-x86_64.sh \
+
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+nvm install --lts
+nvm use --lts
 
 git clone --depth 1 https://github.com/adembudak/snippets.git ~/.config/snippets
 
