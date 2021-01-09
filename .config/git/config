@@ -1,10 +1,15 @@
-# this is a comment
-; this is also a comment
-
 [core]
 	editor = vim
 	filemod = false
 	autocrlf = input
+
+[commit]
+	status = false
+
+[status]
+	short = true
+	showUntrackedFiles = no
+
 [user]
 	email = admbudk@gmail.com
 	name = Adem Budak
@@ -50,7 +55,6 @@
 	statoneline = log --pretty=oneline
 	statwhowhen = log --pretty=format:"%h - %an, %ar : %s"
 	statgraph = log --pretty=format:"%h %s" --graph
-	
 
 [credential]
 	helper = cache
