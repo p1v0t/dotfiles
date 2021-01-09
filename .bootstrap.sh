@@ -25,7 +25,7 @@ https://bootstrap.pypa.io/get-pip.py
 sudo python get-pip.py
 rm get-pip.py
 
-pip install conan --user
+pip install --user conan yamllint
 
 wget --show-progress --no-verbose --output-document cmake-3.19.2-Linux-x86_64.sh \
 https://github.com/Kitware/CMake/releases/download/v3.19.2/cmake-3.19.2-Linux-x86_64.sh
