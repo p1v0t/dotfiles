@@ -12,7 +12,7 @@ Plug 'neoclide/coc.nvim', {'for':['zig','cmake','rust',
 			\'java','json', 'haskell', 'ts','sh', 'cs',
 			\'yaml', 'c', 'cpp', 'd', 'go',
 			\'python', 'dart', 'javascript', 'vim'], 'branch': 'release'}
-
+Plug 'cdelledonne/vim-cmake'
 Plug 'rust-lang/rust.vim', {'for' : ['rust']}
 Plug 'ziglang/zig.vim', {'for' : ['zig']}
 Plug 'dense-analysis/ale', {'for' : ['yaml',  'sh', 'vim', 'javascript']}
@@ -36,15 +36,7 @@ Plug 'rhysd/vim-clang-format', {'for' : ['c', 'cpp']}
 Plug 'mattn/emmet-vim' , {'for' : ['html', 'css']}
 Plug 'tarekbecker/vim-yaml-formatter', {'for' :['yaml']}
 
-Plug 'preservim/nerdtree'
-
 call plug#end()
-
-
-
-" nerdtree-settings  {{{
-nnoremap ne :NERDTreeToggle <Enter>
-" }}}
 
 " coc-settings {{{
 
